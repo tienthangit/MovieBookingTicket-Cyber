@@ -1,17 +1,31 @@
-import React from 'react'
-import {Layout, Menu} from 'antd';
+import React from "react";
+import { Image, Layout, Menu } from "antd/lib";
+import {UserOutlined} from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
+import "./style.css"
 
 export default function Header() {
   return (
     <Layout>
-      <Header className="header">
-      <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
+      <Menu mode="horizontal" className="bgColor">
+        <div className="menuItem">
+          <Menu.Item key="logo">
+            <Image className="logo" src="https://tix.vn/app/assets/img/icons/web-logo.png" />
+          </Menu.Item>
+        </div>
+        <div className="menuItem">
+          <Menu.Item key="HOME"><NavLink exact to="/">HOME</NavLink></Menu.Item>
+          <Menu.Item key="NEWS"><NavLink exact to="/">NEWS</NavLink></Menu.Item>
+          <Menu.Item key="CONTACT"><NavLink exact to="/">CONTACT</NavLink></Menu.Item>
+          <Menu.Item key="ABOUT"><NavLink exact to="/">ABOUT</NavLink></Menu.Item>
+        </div>
+        <div className="menuItem">
+          <Menu.Item key="HOME"><NavLink exact to="/">SIGN IN</NavLink></Menu.Item>
+          <Menu.Item key="NEWS"><NavLink exact to="/">SIGN UP</NavLink></Menu.Item>
+        </div>
+
       </Menu>
-    </Header>
+
     </Layout>
-  )
+  );
 }
