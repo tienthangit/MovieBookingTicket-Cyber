@@ -1,36 +1,17 @@
-import React from "react";
-import { Image, Menu } from "antd";
-import { NavLink } from "react-router-dom";
-import "./style.css";
+import React from 'react'
+import {Layout, Menu} from 'antd';
 
 export default function Header() {
   return (
-    <div className='header'>
-      <div className='container'>
-        <Image className='logo' src="https://tix.vn/app/assets/img/icons/web-logo.png" />
-        <Menu mode="horizontal">
-
-          <Menu.Item key="home">
-            <NavLink to="/">HOME</NavLink>
-          </Menu.Item>
-          <Menu.Item key="SHOWING MOVIE">
-            <NavLink to="/">SHOWING MOVIE</NavLink>
-          </Menu.Item>
-          <Menu.Item key="COMING MOVIE">
-            <NavLink to="/">COMING MOVIE</NavLink>
-          </Menu.Item>
-          
-        </Menu>
-        <Menu mode="horizontal">
-        <Menu.Item key="SIGN IN">
-            <NavLink to="/">SIGN IN</NavLink>
-          </Menu.Item>
-          <Menu.Item key="SIGN UP">
-            <NavLink to="/">SIGN UP</NavLink>
-          </Menu.Item>
-        </Menu>
-      </div>
-
-    </div>
-  );
+    <Layout>
+      <Header className="header">
+      <div className="logo" />
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+        <Menu.Item key="1">nav 1</Menu.Item>
+        <Menu.Item key="2">nav 2</Menu.Item>
+        <Menu.Item key="3">nav 3</Menu.Item>
+      </Menu>
+    </Header>
+    </Layout>
+  )
 }
