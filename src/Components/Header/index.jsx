@@ -1,6 +1,5 @@
 import React from "react";
 import { Image, Layout, Menu } from "antd/lib";
-import {UserOutlined} from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import "./style.css"
 
