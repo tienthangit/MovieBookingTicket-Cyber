@@ -1,11 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const request = ({url, data, params,method}) =>{
-    const variables = {
-        url,
-        data,
-        params,
-        method,
-    };
-    return axios(variables);
-}
+export const request = ({ url, data, params, method, headers }) => {
+  const variables = {
+    url,
+    data,
+    params,
+    method,
+    headers,
+  };
+  return axios(variables);
+};
