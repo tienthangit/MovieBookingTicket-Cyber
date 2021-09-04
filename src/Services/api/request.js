@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const request = ({ url, data, params, method, headers }) => {
+export const request = ({ url, body, params, method, headers }) => {
   const variables = {
     url,
-    data,
+    data:body,
     params,
     method,
     headers,

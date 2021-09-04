@@ -1,19 +1,19 @@
 import { actionTypes } from "../actions/type";
 
 const initialState = {
-  movieList: null,
-  movieDetail:null,
+  cinemaList: null,
+  listInfoCinema: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case actionTypes.SET_MOVIES:
-      state.movieList = payload;
+    case actionTypes.SET_INFO_CINEMA:
+      state.cinemaList = payload;
       return { ...state };
-    
-    case actionTypes.SET_MOVIE_DETAIL:
-        state.movieDetail = payload;
-        return { ...state};
+
+    // case actionTypes.SET_LIST_INFO_CINEMA:
+    //   state.listInfoCinema = payload;
+    //   return { ...state};
 
     default:
       return state;
