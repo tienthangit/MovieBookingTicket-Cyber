@@ -1,3 +1,11 @@
 .imgBanner{
     height:700px;
 }
+.ant-row{
+    width:90%;
+    margin:auto;
+    padding: 1rem;
+}
+/* .ant-card-bordered{
+    margin: 0 1rem;
+} */

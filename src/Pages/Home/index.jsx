@@ -7,7 +7,7 @@ import { fetchListMovies } from "../../Store/actions/movie";
 import { NavLink } from "react-router-dom";
 import CinemaListInfo from "../../Components/Cinema/cinemaListInfo";
 import { fetchInfoCinema } from "../../Store/actions/cinema";
-import Layout from '../../HOC/Layout'
+import Layout from '../../HOC/Layout';
 
 
 const Home = () => {
@@ -34,8 +34,6 @@ const Home = () => {
   const handleChange = useCallback((value) => {
     setPage(value);
   }, []);
-
-
 
   return (
     <Fragment>

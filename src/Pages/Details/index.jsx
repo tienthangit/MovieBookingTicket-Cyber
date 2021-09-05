@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchListId } from '../../Store/actions/movie.js';
 import { Card } from "antd";
+import Layout from "../../HOC/Layout/index.jsx";
 
 export default function Detail() {
     const params = useParams();
@@ -12,7 +13,7 @@ export default function Detail() {
     },);
     const filmDetail = useSelector((state) => state.movie.movieDetail);
 
-    return <>
+    return <Layout>
         {filmDetail ? <Card style={{ width: 240 }} bodyStyle={{ padding: 0 }}>
             <div className="custom-image">
                 <img alt="example" width="100%" src={filmDetail.hinhAnh} />
@@ -22,5 +23,5 @@ export default function Detail() {
                 <p>{filmDetail.moTa}</p>
             </div>
         </Card> : "detail"}
-    </>;
+    </Layout>;
 }
