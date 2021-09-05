@@ -6,18 +6,14 @@ import { fetchBanners } from "../../Store/actions/banner";
 import { fetchListMovies } from "../../Store/actions/movie";
 import { NavLink } from "react-router-dom";
 import CinemaListInfo from "../../Components/Cinema/cinemaListInfo";
-
 import { fetchInfoCinema } from "../../Store/actions/cinema";
-import { fetchListInfo } from '../../Store/actions/cinema';
-import { useParams } from 'react-router'
-import Footer from "../../Components/Footer";
+import Layout from '../../HOC/Layout'
 
 
 const Home = () => {
   const [Page, setPage] = useState(1);
   const dispatch = useDispatch();
   const bannerList = useSelector((state) => state.banner.bannerList);
-  const params = useParams();
 
   //antd
   const { Title } = Typography;
@@ -39,14 +35,12 @@ const Home = () => {
     setPage(value);
   }, []);
 
-  const listInfoLogo = useSelector((state) => state.cinema.cinemaList);
-
-    const listInfoCinema = useSelector((state) => state.cinema.listInfoCinema)
 
 
   return (
     <Fragment>
-      {/* banner */}
+      <Layout>
+        {/* banner */}
       <Carousel autoplay>
         {bannerList.content?.map((item) => (
           <img className="imgBanner" src={item.hinhAnh} alt={item.maBanner} />
@@ -86,7 +80,8 @@ const Home = () => {
       <CinemaListInfo />
 
       {/* footer */}
-      <Footer/>
+      
+      </Layout>
     </Fragment>
   );
 };

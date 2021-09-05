@@ -9,7 +9,6 @@ import Home from "./Pages/Home";
 function App() {
   return (
     <BrowserRouter>
-      <Header/>
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/detail/:id" component={Detail}/>

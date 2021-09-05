@@ -9,7 +9,7 @@ export default function Detail() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchListId(params.id));
-    }, []);
+    },);
     const filmDetail = useSelector((state) => state.movie.movieDetail);
 
     return <>
