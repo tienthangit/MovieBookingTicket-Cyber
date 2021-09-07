@@ -1,14 +1,15 @@
 import React from 'react'
 import Header from '../../Components/Header'
 import { Row, Col, Typography } from 'antd';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import './style.css'
 
 
 function Layout(props) {
     const { Title } = Typography;
     const cinema = useSelector((state) => state.cinema)
     return (
-        <div>
+        <div className="template">
             <Header />
             {props.children}
             {/* <div style={{ background: "red", height: 50, marginTop: 20 }}>

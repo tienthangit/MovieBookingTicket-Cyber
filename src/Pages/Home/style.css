@@ -1,11 +1,25 @@
 .imgBanner{
     height:700px;
 }
+h1.ant-typography, .ant-typography h1 {
+    text-align: center;
+    margin: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 .ant-row{
     width:90%;
     margin:auto;
     padding: 1rem;
 }
-/* .ant-card-bordered{
-    margin: 0 1rem;
-} */
+.ant-card-bordered{
+    margin: 0 .5rem;
+}
+.ant-pagination{
+    text-align: center;
+}
+.ant-tabs{
+    width: 80%;
+    margin: auto;
+    padding:2rem;
+}
