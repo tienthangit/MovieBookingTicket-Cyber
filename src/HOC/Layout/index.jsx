@@ -11,7 +11,9 @@ function Layout(props) {
     return (
         <div className="template">
             <Header />
-            {props.children}
+            <div className="body">
+                {props.children}
+            </div>
             {/* <div style={{ background: "red", height: 50, marginTop: 20 }}>
                FOOTER
            </div> */}
