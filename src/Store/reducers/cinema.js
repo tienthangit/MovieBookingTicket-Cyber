@@ -2,7 +2,7 @@ import { actionTypes } from "../actions/type";
 
 const initialState = {
   cinemaList: null,
-  listInfoCinema: [],
+  InfoCinemaDetail: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -11,9 +11,9 @@ const reducer = (state = initialState, { type, payload }) => {
       state.cinemaList = payload;
       return { ...state };
 
-    // case actionTypes.SET_LIST_INFO_CINEMA:
-    //   state.listInfoCinema = payload;
-    //   return { ...state};
+    case actionTypes.SET_LIST_CINEMA_DETAIL:
+      state.InfoCinemaDetail = payload;
+      return { ...state };
 
     default:
       return state;
