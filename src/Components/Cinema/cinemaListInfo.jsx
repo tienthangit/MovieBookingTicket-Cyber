@@ -1,69 +1,57 @@
-import React from "react";
-import { Tabs } from "antd";
-import { connect } from 'react-redux';
-import { Row, Col,Typography  } from 'antd';
-import './style.css';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchInfoCinema } from '../../Store/actions/cinema'
 import moment from 'moment'
-import { NavLink } from "react-router-dom";
+import './style.css';
+import { Row, Col, Typography, Tabs } from 'antd';
 
-const { TabPane } = Tabs;
-class CinemaListInfo extends React.PureComponent {
-    constructor(props) {
-        super(props);
+export default function CinemaListInfo(props) {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(fetchInfoCinema)
+	}, [dispatch])
+	const cinemaList = useSelector((state) => state.cinema.cinemaList);
+	const { TabPane } = Tabs;
+	const { Text } = Typography;
 
-        this.state = {
-            tabPosition: "left",
-        };
-    }
-
-    renderHeThongRap = () => {
-        return this.props.cinemaList?.map((item, index) => {
-            let { tabPosition } = this.state;
-            const { Title } = Typography;
-            return <TabPane tab={<img src={item.logo} alt={item.tenHeThongRap} width="70" />} key={index}>
-                <Tabs tabPosition={tabPosition}>
-                    {item.lstCumRap?.map((cumRap, index) => {
-                        return <TabPane tab={<div><img src={cumRap.hinhAnh} alt={cumRap.tenCumRap} width="70" /> {cumRap.tenCumRap}</div>} key={index}>
-                            {/* load phim tuong ung */}
-                            {cumRap.danhSachPhim.slice(0,5).map((phim,index) =>{
-                                return <Row key={index}>
-                                <Col span={2}><img src={phim.hinhAnh} alt={phim.tenPhim} width="95%" height="100%"/></Col>
-                                <Col span={16}>
-                                  <Title level={3}>{phim.tenPhim}</Title>
-                                  <Title level={5}>{cumRap.diaChi}</Title>
-                                  {phim.lstLichChieuTheoPhim?.slice(0,12).map((lichChieu,index) =>{
-                                      return <NavLink to="/">{moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}</NavLink>
-                                  })}
-                                </Col>
-                              </Row>
-                            })}
-                        </TabPane>
-                    })}
-                </Tabs>
-            </TabPane>
-        })
-    }
-
-    render() {
-        const { tabPosition } = this.state;
-        return (
-            <>
-                <Tabs tabPosition={tabPosition}>
-                    {this.renderHeThongRap()}
-                </Tabs>
-            </>
-        );
-    }
-    componentDidMount() {
-        // const logoInfoId = this.props.match.params.id;
-        // this.props.dispatch(fetchListInfo(logoInfoId));
-    }
+	return (
+		<Tabs tabPosition={'left'}>
+			{cinemaList ? cinemaList.map((item, index) => {
+				return <TabPane tab={<img src={item.logo} alt={item.tenHeThongRap} width='60' />} key={index}>
+					<Tabs tabPosition={'left'}>
+						{item.lstCumRap?.slice(0, 10).map((lstCumRap, index) => {
+							return <TabPane key={index} tab={<div style={{ display: 'flex' }}>
+								<img src={lstCumRap.hinhAnh} alt={lstCumRap.tenCumRap} style={{width:120, height: 70}} />
+								<div className="lstCumRap-title">
+									<Text strong>{lstCumRap.tenCumRap}</Text>
+									<br />
+									<Text style={{ textAlign: 'left', display: 'block' }} type="danger">Chi tiết</Text>
+								</div>
+							</div>}>
+								<Tabs tabPosition={'left'}>
+									{lstCumRap.danhSachPhim?.slice(0, 5).map((dsPhim, index) => {
+										return <TabPane key={index} tab={<div style={{ display: 'flex', borderBottom:'1px solid #808080a3', paddingBottom:10 }}>
+											<img src={dsPhim.hinhAnh} alt={dsPhim.tenPhim} style={{width:150, height: 120}} />
+											<div className="dsPhim">
+												<Text style={{ textAlign: 'left', display: 'block' }} type="primary">{dsPhim.tenPhim}</Text>
+												<Text style={{ textAlign: 'left', display: 'block' }} type="primary">{lstCumRap.diaChi}</Text>
+												<div className="grid grid-cols-4 gap-2">
+													{dsPhim.lstLichChieuTheoPhim?.slice(0, 10).map((lichChieu, index) => {
+														return <div key={index}>
+															{moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
+														</div>
+													})}
+												</div>
+											</div>
+										</div>}>
+										</TabPane>
+									})}
+								</Tabs>
+							</TabPane>
+						})}
+					</Tabs>
+				</TabPane>
+			}) : 'none'}
+		</Tabs>
+	)
 }
-
-const mapStateToProps = state => {
-    return {
-        cinemaList: state.cinema.cinemaList,
-    }
-}
-
-export default connect(mapStateToProps, null)(CinemaListInfo);

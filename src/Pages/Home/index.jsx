@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, memo, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
-import { Carousel, Typography, Card, Row, Button, Col, Pagination } from "antd";
+import { Carousel, Typography, Card, Row, Col, Pagination } from "antd";
 import { fetchBanners } from "../../Store/actions/banner";
 import { fetchListMovies } from "../../Store/actions/movie";
 import { NavLink } from "react-router-dom";
@@ -39,46 +39,36 @@ const Home = () => {
     <Fragment>
       <Layout>
         {/* banner */}
-      <Carousel autoplay>
-        {bannerList.content?.map((item) => (
-          <img className="imgBanner" src={item.hinhAnh} alt={item.maBanner} />
-        ))}
-      </Carousel>
-      {/* movie selection */}
-      <Title>Movie Selection</Title>
-      <Row>
-        {listFilmPages?.content.items.map((index) => (
-          <Card
-            key={index.maPhim}
-            hoverable
-            style={{ width: 240 }}
-            cover={<img alt="example" src={index.hinhAnh} />}
-          >
-            <Row gutter={16}>
-              <Col className="gutter-row" span={16}>
-                <Meta title={index.tenPhim} description="www.instagram.com" />
-              </Col>
-              <Col className="gutter-row" span={8}>
-                <NavLink to={`/detail/${index.maPhim}`} component={Button}>
-                  Detail
-                </NavLink>
-              </Col>
-            </Row>
-          </Card>
-        ))}
-      </Row>
-      <Pagination
-        defaultCurrent={Page}
-        current={listFilmPages ? listFilmPages.content.currentPage : 1}
-        onChange={handleChange}
-        total={listFilmPages ? listFilmPages.content.totalCount : 1}
-      />
+        <Carousel autoplay>
+          {bannerList.content?.map((item) => (
+            <img className="imgBanner" src={item.hinhAnh} alt={item.maBanner} />
+          ))}
+        </Carousel>
+        {/* movie selection */}
+        <Title>Movie Selection</Title>
+        <Row>
+          {listFilmPages?.content.items.map((index) => (
+            <Col span={6}>
+              <Card
+                key={index.maPhim} hoverable style={{ width: 240 }} cover={<img alt="example" src={index.hinhAnh} />}>
+                  <Meta title={index.tenPhim} description={index.hot?<button className="btn_hot">Hot</button> : <></>}/>
+                  <NavLink className="movie_detail" to={`/detail/${index.maPhim}`}>
+                      <b>Detail</b>
+                    </NavLink>
+              </Card>
+            </Col>
+          ))}
 
-      {/* infor cinema */}
-      <CinemaListInfo />
+        </Row>
+        <Pagination
+          defaultCurrent={Page}
+          current={listFilmPages ? listFilmPages.content.currentPage : 1}
+          onChange={handleChange}
+          total={listFilmPages ? listFilmPages.content.totalCount : 1}
+        />
 
-      {/* footer */}
-      
+        {/* infor cinema */}
+        <div className="cinemaListInfo"><CinemaListInfo /></div>
       </Layout>
     </Fragment>
   );
