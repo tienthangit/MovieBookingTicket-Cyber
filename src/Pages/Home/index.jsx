@@ -67,7 +67,7 @@ const Home = () => {
           total={listFilmPages ? listFilmPages.content.totalCount : 1}
         />
 
-        {/* infor cinema */}
+        {/* infor cinema infor cinema */}
         <div className="cinemaListInfo"><CinemaListInfo /></div>
       </Layout>
     </Fragment>
