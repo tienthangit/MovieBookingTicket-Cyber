@@ -1,6 +1,6 @@
 import { actionTypes } from "./type";
 import { createAction } from "./index";
-import { request } from "../../Services/api/request";
+import { request } from "../../Services/Api/request";
 
 //async action
 export const fetchListMovies = (value) => {

@@ -1,4 +1,4 @@
-import { request } from "../../Services/api/request";
+import { request } from "../../Services/Api/request";
 import { createAction } from "./index";
 import { actionTypes } from "./type";
 
