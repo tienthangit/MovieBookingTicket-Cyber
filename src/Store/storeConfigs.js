@@ -1,20 +1,19 @@
-import { combineReducers, createStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import movie from "./reducers/movie";
-import banner from "./reducers/banner";
-import cinema from './reducers/cinema'
+import {createStore, combineReducers, applyMiddleware ,compose} from 'redux'
+import thunk from 'redux-thunk';
+import { userReducer } from './reducers/userReducer';
 
 const rootReducer = combineReducers({
-  movie,
-  banner,
-  cinema
-});
+    userReducer,
+})
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// để sài redux devtool
+const composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+    rootReducer,
+    composeEnchancers(applyMiddleware(thunk)),
 );
 
 export default store;
+

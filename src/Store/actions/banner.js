@@ -1,6 +1,6 @@
 import { createAction } from "./index";
 import { actionTypes } from "./type";
-import { request } from "../../Services/Api/request";
+import { request } from "../../api/request";
 
 //async action
 export const fetchBanners = (dispatch) => {
