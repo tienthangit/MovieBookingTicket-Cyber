@@ -1,9 +1,15 @@
 import {createStore, combineReducers, applyMiddleware ,compose} from 'redux'
 import thunk from 'redux-thunk';
 import { userReducer } from './reducers/userReducer';
+import movie from './reducers/movie'
+import banner from './reducers/banner'
+import cinema from './reducers/cinema'
 
 const rootReducer = combineReducers({
     userReducer,
+    movie,
+    banner,
+    cinema
 })
 
 

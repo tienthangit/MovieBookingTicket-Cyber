@@ -19,8 +19,8 @@ export default function Header() {
           <Menu.Item key="ABOUT"><NavLink exact to="/">ABOUT</NavLink></Menu.Item>
         </div>
         <div className="menuItem">
-          <Menu.Item key="HOME"><NavLink exact to="/">SIGN IN</NavLink></Menu.Item>
-          <Menu.Item key="NEWS"><NavLink exact to="/">SIGN UP</NavLink></Menu.Item>
+          <Menu.Item key="HOME"><NavLink exact to="/signin">SIGN IN</NavLink></Menu.Item>
+          <Menu.Item key="NEWS"><NavLink exact to="/signup">SIGN UP</NavLink></Menu.Item>
         </div>
 
       </Menu>

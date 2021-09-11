@@ -1,10 +1,10 @@
-import { request } from "../../Services/Api/request";
+import { requests } from "../../Services/api/request";
 import { createAction } from "./index";
 import { actionTypes } from "./type";
 
 export const fetchInfoCinema = () => {
   return (dispatch) => {
-    request({
+    requests({
       url: "https://movienew.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01",
       method: "GET",
       headers: {
@@ -21,7 +21,7 @@ export const fetchInfoCinema = () => {
 
 export const fetchInfoCinemaDetail = (id) => {
   return (dispatch) => {
-    request({
+    requests({
       url: "https://movienew.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim",
       method: "GET",
       params: {
