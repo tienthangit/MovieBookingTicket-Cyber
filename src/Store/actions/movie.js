@@ -1,6 +1,6 @@
 import { actionTypes } from "./type";
-import { createAction } from "./index";
-import { requests } from "../../Services/api/request";
+import { createActions } from "../constants/createAction";
+import { requests } from "../../Services/Api/request";
 
 //async action
 export const fetchListMovies = (value) => {
@@ -16,7 +16,7 @@ export const fetchListMovies = (value) => {
             }
         })
             .then((res) => {
-                dispatch(createAction(actionTypes.SET_MOVIES, res.data))
+                dispatch(createActions(actionTypes.SET_MOVIES, res.data))
             })
             .catch((err) => console.log(err))
     }
@@ -32,7 +32,7 @@ export const fetchListId = (id) => {
                 MaPhim: id,
             }
         }).then(res => {
-            dispatch(createAction(actionTypes.SET_MOVIE_DETAIL, res.data))
+            dispatch(createActions(actionTypes.SET_MOVIE_DETAIL, res.data))
         }).catch(err => {
             console.log(err);
         })

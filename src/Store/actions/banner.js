@@ -1,6 +1,6 @@
-import { createAction } from "./index";
+import { createActions } from "../constants/createAction";
 import { actionTypes } from "./type";
-import { requests } from "../../Services/api/request";
+import { requests } from "../../Services/Api/request";
 
 //async action
 export const fetchBanners = (dispatch) => {
@@ -13,7 +13,7 @@ export const fetchBanners = (dispatch) => {
     
   })
     .then((res) => {
-        dispatch(createAction(actionTypes.SET_BANNERS,res.data));
+        dispatch(createActions(actionTypes.SET_BANNERS,res.data));
     })
     .catch((err) => console.error(err));
 };

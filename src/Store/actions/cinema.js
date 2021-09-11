@@ -1,5 +1,5 @@
-import { requests } from "../../Services/api/request";
-import { createAction } from "./index";
+import { requests } from "../../Services/Api/request";
+import { createActions } from "../constants/createAction";
 import { actionTypes } from "./type";
 
 export const fetchInfoCinema = () => {
@@ -13,7 +13,7 @@ export const fetchInfoCinema = () => {
       },
     })
       .then((res) => {
-        dispatch(createAction(actionTypes.SET_INFO_CINEMA, res.data.content));
+        dispatch(createActions(actionTypes.SET_INFO_CINEMA, res.data.content));
       })
       .catch((err) => console.log(err));
   };
@@ -33,7 +33,7 @@ export const fetchInfoCinemaDetail = (id) => {
       },
     })
       .then((res) => {
-        dispatch(createAction(actionTypes.SET_LIST_CINEMA_DETAIL, res.data.content));
+        dispatch(createActions(actionTypes.SET_LIST_CINEMA_DETAIL, res.data.content));
       })
       .catch((err) => console.log(err));
   };
