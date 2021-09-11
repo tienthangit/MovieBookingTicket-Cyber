@@ -1,10 +1,10 @@
 import { createAction } from "./index";
 import { actionTypes } from "./type";
-import { request } from "../../api/request";
+import { requests } from "../../Services/api/request";
 
 //async action
 export const fetchBanners = (dispatch) => {
-  request({
+  requests({
     url: "https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachBanner",
     method: "GET",
     headers: {
