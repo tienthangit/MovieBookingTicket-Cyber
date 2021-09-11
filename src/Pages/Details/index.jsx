@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Modal, Rate } from "antd";
 import Layout from "../../HOC/Layout/index.jsx";
-import {  Col, Typography, Tag, Tabs } from 'antd';
+import { Col, Typography, Tag, Tabs } from 'antd';
 import moment from 'moment';
 import './style.css';
 import { CustomCard } from '@tsamantanis/react-glassmorphism'
