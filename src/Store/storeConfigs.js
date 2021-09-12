@@ -10,9 +10,7 @@ const rootReducer = combineReducers({
     movie,
     banner,
     cinema
-})
-
-
+});
 // để sài redux devtool
 const composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
