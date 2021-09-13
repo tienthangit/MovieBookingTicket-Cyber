@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchInfoCinema } from '../../Store/actions/cinema'
 import moment from 'moment'
 import './style.css';
-import { Row, Col, Typography, Tabs } from 'antd';
+import { Typography, Tabs } from 'antd';
 import {NavLink} from 'react-router-dom'
+import { FetchInfoCinema } from '../../Store/actions/QuanLyRapActions';
 
 export default function CinemaListInfo(props) {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(fetchInfoCinema)
+		dispatch(FetchInfoCinema())
 	}, [dispatch])
-	const cinemaList = useSelector((state) => state.cinema.cinemaList);
+	const cinemaList = useSelector((state) => state.quanLyRapReducers.listInfoCinema);
 	const { TabPane } = Tabs;
 	const { Text } = Typography;
 

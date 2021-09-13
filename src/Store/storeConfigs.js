@@ -1,17 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { userReducer } from "./reducers/userReducer";
-import movie from "./reducers/movie";
-import banner from "./reducers/banner";
-import cinema from "./reducers/cinema";
 import { movieReducers } from "./reducers/movieReducers";
+import { quanLyRapReducers } from "./reducers/QuanLyRapReducers";
 
 const rootReducer = combineReducers({
   userReducer,
   movieReducers,
-  movie,
-  banner,
-  cinema,
+  quanLyRapReducers,
 });
 // để sài redux devtool
 const composeEnchancers =

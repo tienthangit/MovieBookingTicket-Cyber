@@ -55,6 +55,7 @@
 
 .movie_trailer button:hover {
   opacity: 1;
+  cursor: pointer;
 }
 
 .play-video {

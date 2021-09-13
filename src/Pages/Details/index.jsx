@@ -7,9 +7,9 @@ import { Col, Typography, Tag, Tabs } from 'antd';
 import moment from 'moment';
 import './style.css';
 import { CustomCard } from '@tsamantanis/react-glassmorphism'
-import { fetchInfoCinemaDetail } from '../../Store/actions/cinema'
 import { PlayCircleOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
+import { FetchMovieDetailsAction } from "../../Store/actions/QuanLyRapActions";
 
 export default function Detail() {
   const { Title } = Typography;
@@ -18,10 +18,9 @@ export default function Detail() {
   const params = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(fetchListId(params.id));
-    dispatch(fetchInfoCinemaDetail(params.id))
+    dispatch(FetchMovieDetailsAction(params.id))
   }, [dispatch]);
-  const filmDetail = useSelector((state) => state.cinema.InfoCinemaDetail);
+  const filmDetail = useSelector((state) => state.quanLyRapReducers.movieDetail);
 
   //show modal video
   const showModal = () => {

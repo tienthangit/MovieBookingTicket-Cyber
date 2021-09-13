@@ -2,9 +2,11 @@ import {
   SET_MOVIES_LIST,
   SET_FILM_DANG_CHIEU,
   SET_FILM_SAP_CHIEU,
+  SET_BANNER_LIST
 } from "../constants/movieConstants";
 
 const stateDefault = {
+  bannerList:[],
   arrFilm: [],
   arrFilmDefault: [],
   dangChieu: true,
@@ -13,6 +15,10 @@ const stateDefault = {
 
 export const movieReducers = (state = stateDefault, { type, payload }) => {
   switch (type) {
+    case SET_BANNER_LIST:
+      state.bannerList = payload;
+      return {...state};
+
     case SET_MOVIES_LIST:
       state.arrFilm = payload;
       state.arrFilmDefault = state.arrFilm;
