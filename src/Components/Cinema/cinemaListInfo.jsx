@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchInfoCinema } from '../../Store/actions/cinema'
 import moment from 'moment'
 import './style.css';
-import { Row, Col, Typography, Tabs } from 'antd';
+import { Typography, Tabs } from 'antd';
+import {NavLink} from 'react-router-dom'
+import { FetchInfoCinema } from '../../Store/actions/QuanLyRapActions';
 
 export default function CinemaListInfo(props) {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(fetchInfoCinema)
+		dispatch(FetchInfoCinema())
 	}, [dispatch])
-	const cinemaList = useSelector((state) => state.cinema.cinemaList);
+	const cinemaList = useSelector((state) => state.quanLyRapReducers.listInfoCinema);
 	const { TabPane } = Tabs;
 	const { Text } = Typography;
 
@@ -35,11 +36,9 @@ export default function CinemaListInfo(props) {
 											<div className="dsPhim">
 												<Text style={{ textAlign: 'left', display: 'block' }} type="primary">{dsPhim.tenPhim}</Text>
 												<Text style={{ textAlign: 'left', display: 'block' }} type="primary">{lstCumRap.diaChi}</Text>
-												<div className="grid grid-cols-4 gap-2">
+												<div className="grid grid-cols-3 gap-4">
 													{dsPhim.lstLichChieuTheoPhim?.slice(0, 10).map((lichChieu, index) => {
-														return <div key={index}>
-															{moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
-														</div>
+														return <NavLink to='/' className="col-span-1 gioChieu">{moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}</NavLink>
 													})}
 												</div>
 											</div>

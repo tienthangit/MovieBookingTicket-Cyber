@@ -23,7 +23,7 @@
     margin: 2rem 0;
 }
 h4.ant-typography, .ant-typography h4 {
-    color: white;
+    color: white !important;
 }
 .tix-col,.logo-col,.mobile-col,.social-col{
     display: flex;

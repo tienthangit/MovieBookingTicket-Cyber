@@ -7,9 +7,9 @@ import { Col, Typography, Tag, Tabs } from 'antd';
 import moment from 'moment';
 import './style.css';
 import { CustomCard } from '@tsamantanis/react-glassmorphism'
-import { fetchInfoCinemaDetail } from '../../Store/actions/cinema'
 import { PlayCircleOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
+import { FetchMovieDetailsAction } from "../../Store/actions/QuanLyRapActions";
 
 export default function Detail() {
   const { Title } = Typography;
@@ -18,10 +18,9 @@ export default function Detail() {
   const params = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(fetchListId(params.id));
-    dispatch(fetchInfoCinemaDetail(params.id))
+    dispatch(FetchMovieDetailsAction(params.id))
   }, [dispatch]);
-  const filmDetail = useSelector((state) => state.cinema.InfoCinemaDetail);
+  const filmDetail = useSelector((state) => state.quanLyRapReducers.movieDetail);
 
   //show modal video
   const showModal = () => {
@@ -57,7 +56,7 @@ export default function Detail() {
             <Title className="ngayKhoiChieu" level={5}>{moment(filmDetail.ngayKhoiChieu).format('DD-MM-YYYY')}</Title>
             <div className="row">
               <Tag color="#f50">{filmDetail.maPhim}</Tag>
-              <Title level={3}>{filmDetail.tenPhim}</Title>
+              <Title level={3} className="tenPhim-detail">{filmDetail.tenPhim}</Title>
             </div>
             <p>Nội dung: {filmDetail.moTa}</p>
           </Col>
