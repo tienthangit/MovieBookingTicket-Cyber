@@ -1,16 +1,18 @@
 /* ./src/index.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+tailwind base,
+tailwind components,
+tailwind utilities,
 
-@import "~antd/dist/antd.css";
+
 
 body {
   padding: 0;
   margin: 0;
+  /* overflow-x: hidden; */
   font-family: "Roboto" sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {

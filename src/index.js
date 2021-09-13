@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "antd/dist/antd.css";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 //set up store
 import { Provider } from 'react-redux';
 import store from "./Store/storeConfigs"
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 
 ReactDOM.render(
   <Provider store={store}>
