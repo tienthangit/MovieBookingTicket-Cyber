@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 //set up store
 import { Provider } from 'react-redux';
 import store from "./Store/storeConfigs"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 ReactDOM.render(
   <Provider store={store}>
