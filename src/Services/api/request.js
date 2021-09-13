@@ -1,15 +1,12 @@
 import axios from 'axios'
-import { TOKEN_CYBERSOFT } from '../../Utils/systemSetting'
 
-export const requests = ({ url, data, params, method }) => {
+export const requests = ({ url, data, params, method, headers }) => {
     const variables = {
-        url,
-        data,
-        params,
-        method,
-        headers: {
-            TokenCybersoft: TOKEN_CYBERSOFT
-        }
+      url,
+      data,
+      params,
+      method,
+      headers,
     }
     const toKen = localStorage.getItem('toKen')
     if (toKen)
