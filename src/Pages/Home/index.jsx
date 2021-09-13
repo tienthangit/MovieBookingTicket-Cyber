@@ -8,6 +8,8 @@ import { NavLink } from "react-router-dom";
 import CinemaListInfo from "../../Components/Cinema/cinemaListInfo";
 import { fetchInfoCinema } from "../../Store/actions/cinema";
 import Layout from '../../HOC/Layout';
+import { FetchListMovieAction } from "../../Store/actions/movieActions";
+import MultipleRowSlick from "../../Components/RSlick/MultipleRowSlick";
 
 
 const Home = () => {
@@ -22,6 +24,7 @@ const Home = () => {
   //gui dispatch len middleware va call api
   useEffect(() => {
     dispatch(fetchBanners);
+    dispatch(FetchListMovieAction())
     dispatch(fetchListMovies(Page));
     dispatch(fetchInfoCinema());
   }, [dispatch,Page]);
@@ -46,26 +49,9 @@ const Home = () => {
         </Carousel>
         {/* movie selection */}
         <Title>Movie Selection</Title>
-        <Row>
-          {listFilmPages?.content.items.map((index) => (
-            <Col span={6}>
-              <Card
-                key={index.maPhim} hoverable style={{ width: 240 }} cover={<img alt="example" src={index.hinhAnh} />}>
-                  <Meta title={index.tenPhim} description={index.hot?<button className="btn_hot">Hot</button> : <></>}/>
-                  <NavLink className="movie_detail" to={`/detail/${index.maPhim}`}>
-                      <b>Detail</b>
-                    </NavLink>
-              </Card>
-            </Col>
-          ))}
-
-        </Row>
-        <Pagination
-          defaultCurrent={Page}
-          current={listFilmPages ? listFilmPages.content.currentPage : 1}
-          onChange={handleChange}
-          total={listFilmPages ? listFilmPages.content.totalCount : 1}
-        />
+        <div className="container px-5 mx-auto " >
+          <MultipleRowSlick/>
+        </div>
 
         {/* infor cinema */}
         <div className="cinemaListInfo"><CinemaListInfo /></div>

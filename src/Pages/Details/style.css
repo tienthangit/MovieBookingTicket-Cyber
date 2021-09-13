@@ -8,7 +8,6 @@
 .img_detail {
   position: relative;
   overflow: hidden;
-
 }
 
 .ant-modal-header,
@@ -18,7 +17,10 @@
 
 .ant-modal-title,
 .ant-modal-close-x {
-  color: white;
+  color: white !important;
+}
+.ant-modal-header {
+  background-color: black !important;
 }
 
 .img_detail:hover .movie__detail {
@@ -38,13 +40,17 @@
 
 .movie_trailer button {
   opacity: 0;
-  transition: all .2s;
+  transition: all 0.5s;
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
   position: absolute;
   top: 35%;
   left: 29%;
+  border: none;
+  color: black;
+  background: none;
+  font-weight: 500;
 }
 
 .movie_trailer button:hover {
@@ -59,10 +65,8 @@
 .detail-film {
   margin: 4rem 2rem 1rem 1rem;
 }
-
-h5.ant-typography,
-h3.ant-typography {
-  color: white;
+.ngayKhoiChieu,.tenPhim-detail{
+  color: white !important;
 }
 
 .row {
@@ -71,8 +75,8 @@ h3.ant-typography {
 }
 
 .ant-tag-has-color {
-  padding: .5rem;
-  height: 2.5rem;
+  padding: 0.5rem !important;
+  height: 2.5rem !important;
   font-size: 1rem;
 }
 
@@ -116,7 +120,11 @@ p {
 }
 
 .jXIqcU {
-  background: linear-gradient(to bottom, rgb(48 56 65 / 65%), rgb(48 56 65 / 80%)) !important;
+  background: linear-gradient(
+    to bottom,
+    rgb(48 56 65 / 65%),
+    rgb(48 56 65 / 80%)
+  ) !important;
 }
 
 /* rating circle */
@@ -393,7 +401,7 @@ p {
   font-size: 80px;
 }
 
-.c100>span {
+.c100 > span {
   position: absolute;
   width: 100%;
   z-index: 1;
@@ -1259,7 +1267,7 @@ p {
   cursor: default;
 }
 
-.c100:hover>span {
+.c100:hover > span {
   width: 3.33em;
   line-height: 3.33em;
   font-size: 0.3em;
@@ -1282,7 +1290,7 @@ p {
   border-color: #c6ff00 !important;
 }
 
-.c100.dark>span {
+.c100.dark > span {
   color: #777777;
 }
 
@@ -1290,7 +1298,7 @@ p {
   background-color: #666666;
 }
 
-.c100.dark:hover>span {
+.c100.dark:hover > span {
   color: #c6ff00;
 }
 
@@ -1299,7 +1307,7 @@ p {
   border-color: #4db53c !important;
 }
 
-.c100.green:hover>span {
+.c100.green:hover > span {
   color: #4db53c;
 }
 
@@ -1308,7 +1316,7 @@ p {
   border-color: #5fd400 !important;
 }
 
-.c100.green.dark:hover>span {
+.c100.green.dark:hover > span {
   color: #5fd400;
 }
 
@@ -1317,7 +1325,7 @@ p {
   border-color: #dd9d22 !important;
 }
 
-.c100.orange:hover>span {
+.c100.orange:hover > span {
   color: #dd9d22;
 }
 
@@ -1326,6 +1334,6 @@ p {
   border-color: #e08833 !important;
 }
 
-.c100.orange.dark:hover>span {
+.c100.orange.dark:hover > span {
   color: #e08833;
 }

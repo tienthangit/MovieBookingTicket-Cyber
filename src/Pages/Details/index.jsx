@@ -57,7 +57,7 @@ export default function Detail() {
             <Title className="ngayKhoiChieu" level={5}>{moment(filmDetail.ngayKhoiChieu).format('DD-MM-YYYY')}</Title>
             <div className="row">
               <Tag color="#f50">{filmDetail.maPhim}</Tag>
-              <Title level={3}>{filmDetail.tenPhim}</Title>
+              <Title level={3} className="tenPhim-detail">{filmDetail.tenPhim}</Title>
             </div>
             <p>Nội dung: {filmDetail.moTa}</p>
           </Col>
