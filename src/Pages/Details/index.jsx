@@ -7,13 +7,14 @@ import { Col, Typography, Tag, Tabs } from 'antd';
 import moment from 'moment';
 import './style.css';
 import { CustomCard } from '@tsamantanis/react-glassmorphism'
+import "@tsamantanis/react-glassmorphism/dist/index.css";
 import { fetchInfoCinemaDetail } from '../../Store/actions/cinema'
 import { PlayCircleOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
+const { TabPane } = Tabs;
+const { Title } = Typography;
 
 export default function Detail() {
-  const { Title } = Typography;
-  const { TabPane } = Tabs;
   const [state, setState] = useState(false);
   const params = useParams();
   const dispatch = useDispatch();
