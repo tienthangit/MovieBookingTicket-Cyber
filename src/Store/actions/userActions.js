@@ -8,6 +8,7 @@ export const SignInAction = (userLogin, callback) => {
         userServices.signIn(userLogin)
             .then((res) => {
                 localStorage.setItem(USER_LOGIN, JSON.stringify(res.data.content))
+                localStorage.setItem('toKen', res.data.content.accessToken)
                 dispatch(createActions(USER_SIGNIN, res.data.content))
                 callback();
                 console.log(res.data.content);

@@ -89,9 +89,16 @@ export default function Detail() {
                             <p>{cumRapChieu.diaChi}</p>
                             <div className="grid grid-cols-4">
                               {cumRapChieu.lichChieuPhim?.slice(0, 10).map((lichChieuPhim, index) => {
-                                return <NavLink to='/' className="col-span-1 gioChieu" key={index}>
-                                  {moment(lichChieuPhim.ngayChieuGioChieu).format('hh:mm A')}
-                                </NavLink>
+                                return (
+                                  <NavLink
+                                    to={`/booking/${lichChieuPhim.maLichChieu}`}
+                                    className="col-span-1 gioChieu"
+                                    key={index}>
+                                    {moment(
+                                      lichChieuPhim.ngayChieuGioChieu
+                                    ).format("hh:mm A")}
+                                  </NavLink>
+                                );
                               })}
                             </div>
                           </div>
