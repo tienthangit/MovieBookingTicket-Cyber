@@ -5,11 +5,13 @@ import TicketBooking from "./ticketBooking";
 import { useDispatch, useSelector } from "react-redux"
 import { getDetailRoomTicketAction } from "../../Store/actions/bookingAction";
 import { Tabs } from 'antd';
-import { Avatar, Image } from "antd";
+import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import ResultBooking from "../../Pages/ResultBooking";
+import { createActions } from "../../Store/constants/createAction";
+import { CHUYEN_TAB_ACTIVE } from "../../Store/constants/bookingConstant";
+import './booking.css'
 const { TabPane } = Tabs;
-
 
 
 function BookingTemplate(props) {
@@ -20,16 +22,20 @@ function BookingTemplate(props) {
     dispatch(getDetailRoomTicketAction(props.computedMatch.params.id))
   }, [])
 
-  const { thongTinPhim, danhSachGhe } = useSelector(state => state.bookingTicketReducer.detailRoomTicket)
+  const { tabActive } = useSelector(state => state.bookingTicketReducer)
 
   const user = useSelector(state => state.userReducer.userLogin)
   const operations = <div className="flex py-4 justify-end items-center">
     <Avatar
-      style={{ backgroundColor: "#fb4226",lineHeight: '18px' }}
+      style={{ backgroundColor: "#fb4226", lineHeight: '18px' }}
       icon={<UserOutlined />}
     />
     <span className="mx-3">{user?.hoTen}</span>
   </div>
+
+  const onChangeTab = (key) => {
+    dispatch(createActions(CHUYEN_TAB_ACTIVE, key))
+  }
 
 
   if (!localStorage.getItem("USER_LOGIN"))
@@ -46,17 +52,14 @@ function BookingTemplate(props) {
             <Fragment>
               <div className="grid grid-cols-4 h-full">
                 <div className="col-span-3">
-                  <Tabs defaultActiveKey="1" tabBarExtraContent={operations} className="container">
-                    <TabPane tab="CHỌN GHẾ & THANH TOÁN" key="1">
+                  <Tabs defaultActiveKey='1' activeKey={tabActive} onChange={onChangeTab} tabBarExtraContent={operations} className="">
+                    <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
                       <Component {...propsRoute} />
                     </TabPane>
-                    <TabPane tab="KẾT QUẢ ĐẶT VÉ" key="2">
+                    <TabPane tab="02 KẾT QUẢ ĐẶT VÉ" key="2">
                       <ResultBooking {...propsRoute} />
                     </TabPane>
-
                   </Tabs>
-                  <div>
-                  </div>
                 </div>
                 <TicketBooking {...propsRoute} />
               </div>

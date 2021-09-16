@@ -39,8 +39,8 @@ function TicketBooking(props) {
 
   return (
     <>
-      <div className="py-3 h-full">
-        <div className="flex justify-center items-center py-3">
+      <div className="p-4 h-full">
+        <div className="flex justify-center items-center py-4">
           <span className="text-green-600 text-3xl"> {renderPrice()} đ. </span>
         </div>
         <hr />

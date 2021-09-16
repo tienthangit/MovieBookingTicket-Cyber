@@ -80,64 +80,66 @@ function BookingTicket(props) {
   };
 
   return (
-    <>
-      <div className="gird grid-cols-6">
-        <div className="flex">
-          <img
-            style={{ width: 50, height: 50 }}
-            src={thongTinPhim?.hinhAnh}
-            alt="..."
-          />
-          <div className="ml-2">
-            <h3>
-              <span className="text-green-600 font-semibold text-xl">
-                {thongTinPhim?.tenCumRap}
-              </span>{" "}
-              - {thongTinPhim?.gioChieu} -{" "}
-              <Tag className="rounded-xl" color="#fb4226">
-                {thongTinPhim?.tenRap}
-              </Tag>
-            </h3>
-            <h4>Địa điểm - {thongTinPhim?.diaChi}</h4>
+    <div>
+      <div className="container">
+        <div className="gird grid-cols-6">
+          <div className="flex">
+            <img
+              style={{ width: 50, height: 50 }}
+              src={thongTinPhim?.hinhAnh}
+              alt="..."
+            />
+            <div className="ml-2">
+              <h3>
+                <span className="text-green-600 font-semibold text-xl">
+                  {thongTinPhim?.tenCumRap}
+                </span>{" "}
+                - {thongTinPhim?.gioChieu} -{" "}
+                <Tag className="rounded-xl" color="#fb4226">
+                  {thongTinPhim?.tenRap}
+                </Tag>
+              </h3>
+              <h4>Địa điểm - {thongTinPhim?.diaChi}</h4>
+            </div>
           </div>
         </div>
+        <div className="screen mt-3">
+          <img className="w-full" src={srceen} alt="screen" />
+        </div>
+        <div className="listGhe">{renderSeats()}</div>
+        <hr />
+        <div className="noteGhe mt-5">
+          <ul className="flex flex-wrap justify-center">
+            <li className="flex items-center">
+              <button className="ghe"></button>
+              <span className="font-bold">Ghế chưa đặt</span>
+            </li>
+            <li className="flex items-center">
+              <button className="ghe gheDaDat">
+                <CloseOutlined
+                  style={{ fontFamily: "bold", fontSize: "1.3rem" }}
+                />
+              </button>
+              <span className="font-bold">Ghế đã đặt</span>
+            </li>
+            <li className="flex items-center">
+              <button className="ghe gheDangChon"></button>
+              <span className="font-bold">Ghế đang chọn</span>
+            </li>
+            <li className="flex items-center">
+              <button className="ghe gheDaDuocMinhDat ">
+                <UserOutlined style={{ fontSize: "20px" }} />
+              </button>
+              <span className="font-bold">Ghế đã được mình đặt</span>
+            </li>
+            <li className="flex items-center">
+              <button className="ghe gheVip "></button>
+              <span className="font-bold">Ghế VIP</span>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className="screen mt-3">
-        <img className="w-full" src={srceen} alt="screen" />
-      </div>
-      <div className="listGhe">{renderSeats()}</div>
-      <hr />
-      <div className="noteGhe mt-5">
-        <ul className="flex flex-wrap justify-center">
-          <li className="flex items-center">
-            <button className="ghe"></button>
-            <span className="font-bold">Ghế chưa đặt</span>
-          </li>
-          <li className="flex items-center">
-            <button className="ghe gheDaDat">
-              <CloseOutlined
-                style={{ fontFamily: "bold", fontSize: "1.3rem" }}
-              />
-            </button>
-            <span className="font-bold">Ghế đã đặt</span>
-          </li>
-          <li className="flex items-center">
-            <button className="ghe gheDangChon"></button>
-            <span className="font-bold">Ghế đang chọn</span>
-          </li>
-          <li className="flex items-center">
-            <button className="ghe gheDaDuocMinhDat ">
-              <UserOutlined style={{ fontSize: "20px" }} />
-            </button>
-            <span className="font-bold">Ghế đã được mình đặt</span>
-          </li>
-          <li className="flex items-center">
-            <button className="ghe gheVip "></button>
-            <span className="font-bold">Ghế VIP</span>
-          </li>
-        </ul>
-      </div>
-    </>
+    </div>
   );
 }
 

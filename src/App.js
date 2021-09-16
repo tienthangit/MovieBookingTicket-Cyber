@@ -6,13 +6,14 @@ import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import BookingTicket from "./Pages/BookingTicket";
 import BookingTemplate from "./Templates/bookingTemplate/bookingTemplate";
-import ResultBooking from "./Pages/ResultBooking";
+import Loading from "./Components/Loading";
 
 
 
 function App() {
   return (
     <BrowserRouter>
+      <Loading/>
       <Switch>
         <UserTemplate path="/signin" Component={SignIn} />
         <UserTemplate path="/signup" Component={SignUp} />

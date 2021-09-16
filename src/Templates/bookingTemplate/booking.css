@@ -1,0 +1,13 @@
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color: #fb4226 !important;
+}
+
+.ant-tabs-ink-bar{
+    background: #fb4226 !important;
+}
+.ant-tabs-tab:hover {
+    color: green !important;
+}
+.ant-tabs-nav-list{
+    margin-left: 9% !important;
+}
