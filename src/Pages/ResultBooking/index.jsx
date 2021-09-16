@@ -35,11 +35,10 @@ function ResultBooking() {
               chiếu {moment(item.ngayDat).format("hh:mm A")}
             </h3>
             <h3>
-              {" "}
-              Tên rạp : {item.danhSachGhe[0].tenRap} - Ghế :{" "}
+              Tên rạp : {item.danhSachGhe[0].tenRap} - Ghế : 
               {item.danhSachGhe.map((ghe, index) => {
-                return <h3 key={index}> {ghe.tenGhe} </h3>;
-              })}{" "}
+                return <span className='text-green-600' key={index}> {ghe.tenGhe} </span>;
+              })}
             </h3>
           </div>
         </div>
