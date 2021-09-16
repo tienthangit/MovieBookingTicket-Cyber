@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 import { userReducer } from "./reducers/userReducer";
 import { movieReducers } from "./reducers/movieReducers";
 import { quanLyRapReducers } from "./reducers/QuanLyRapReducers";
+import bookingTicketReducer from "./reducers/bookingTicketReducer";
 
 const rootReducer = combineReducers({
   userReducer,
   movieReducers,
+  bookingTicketReducer,
   quanLyRapReducers,
 });
 // để sài redux devtool

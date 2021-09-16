@@ -46,7 +46,7 @@ const Home = (props) => {
 
         {/* movie selection */}
         <Title>Movie Selection</Title>
-        <div className="container px-5 mx-auto ">
+        <div className="container mx-auto">
           <MultipleRowSlick />
         </div>
 

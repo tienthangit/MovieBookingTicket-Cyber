@@ -39,7 +39,7 @@ export default function MultipleRowSlick(props) {
   
 
   const settings = {
-    className: "center",
+    className: "center variable-width",
     centerMode: true,
     infinite: true,
     centerPadding: "60px",
@@ -66,13 +66,25 @@ export default function MultipleRowSlick(props) {
       }}>Phim Sắp chiếu</Button>
       <Slider {...settings}>
         {arrFilm? arrFilm.slice(0,12).map((phim,index) =>{
-          return <div key={index} className="flip-card">
-            <div className="flip-card-front">
-              <img src={phim.hinhAnh} alt="Avatar" style={{ width: 265, height: 300 }} />
-            </div>
-            {phim.hot? <button className="btn_hot">HOT</button>: <></>}
-           <NavLink className="movie_detail" to={`/detail/${phim.maPhim}`}><b>Detail</b></NavLink>
-         </div>
+          return (
+              <div key={index} className="flip-card px-2">
+                <div
+                  className="flip-card-front"
+                  style={{ background: `url(${phim.hinhAnh})` }}>
+                  <img
+                    src={phim.hinhAnh}
+                    className="opacity-0 w-full"
+                    alt="Avatar"
+                  />
+                </div>
+              <div style={{position:'relative'}}>
+                <NavLink className="movie_detail" to={`/detail/${phim.maPhim}`}>
+                  <b>Detail</b>
+                </NavLink>
+                </div>
+                {phim.hot ? <button className="btn_hot">HOT</button> : <></>}
+              </div>
+          );
         }):'none'}
       </Slider>
     </div>

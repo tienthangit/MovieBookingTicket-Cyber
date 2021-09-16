@@ -16,7 +16,7 @@ function Layout(props) {
         {props.children}
       </div>
       <div className="footer">
-        <div className="container">
+        <div className="containerLayout">
           <div className='row'>
             <Col span={8}>
               <Title level={4}>Tix</Title>

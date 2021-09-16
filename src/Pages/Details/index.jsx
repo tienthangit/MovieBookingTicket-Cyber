@@ -4,16 +4,16 @@ import { useParams } from "react-router-dom";
 import { Modal, Rate } from "antd";
 import Layout from "../../HOC/Layout/index.jsx";
 import { Col, Typography, Tag, Tabs } from 'antd';
+import { FetchMovieDetailsAction } from "../../Store/actions/QuanLyRapActions";
 import moment from 'moment';
 import './style.css';
 import { CustomCard } from '@tsamantanis/react-glassmorphism'
 import { PlayCircleOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
-import { FetchMovieDetailsAction } from "../../Store/actions/QuanLyRapActions";
+const { TabPane } = Tabs;
+const { Title } = Typography;
 
 export default function Detail() {
-  const { Title } = Typography;
-  const { TabPane } = Tabs;
   const [state, setState] = useState(false);
   const params = useParams();
   const dispatch = useDispatch();
@@ -89,9 +89,16 @@ export default function Detail() {
                             <p>{cumRapChieu.diaChi}</p>
                             <div className="grid grid-cols-4">
                               {cumRapChieu.lichChieuPhim?.slice(0, 10).map((lichChieuPhim, index) => {
-                                return <NavLink to='/' className="col-span-1 gioChieu" key={index}>
-                                  {moment(lichChieuPhim.ngayChieuGioChieu).format('hh:mm A')}
-                                </NavLink>
+                                return (
+                                  <NavLink
+                                    to={`/booking/${lichChieuPhim.maLichChieu}`}
+                                    className="col-span-1 gioChieu"
+                                    key={index}>
+                                    {moment(
+                                      lichChieuPhim.ngayChieuGioChieu
+                                    ).format("hh:mm A")}
+                                  </NavLink>
+                                );
                               })}
                             </div>
                           </div>

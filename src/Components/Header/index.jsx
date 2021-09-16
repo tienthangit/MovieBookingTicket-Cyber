@@ -1,11 +1,11 @@
 import React from "react";
-import { Image, Layout, Menu } from "antd/lib";
+import { Image, Menu } from "antd/lib";
 import { NavLink } from "react-router-dom";
 import "./style.css"
 
 export default function Header() {
   return (
-    <Layout>
+    <>
       <Menu mode="horizontal" className="bgColor">
         <div className="menuItem">
           <Menu.Item key="logo">
@@ -25,6 +25,6 @@ export default function Header() {
 
       </Menu>
 
-    </Layout>
+    </>
   );
 }
