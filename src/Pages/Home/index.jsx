@@ -10,6 +10,7 @@ import {
 } from "../../Store/actions/movieActions";
 import MultipleRowSlick from "../../Components/RSlick/MultipleRowSlick";
 import Slider from "react-slick";
+import { getInfoBookingAction } from "../../Store/actions/bookingAction";
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -27,8 +28,10 @@ const Home = (props) => {
 
   //gui dispatch len middleware va call api
   useEffect(() => {
+    window.scrollTo(0,0)
     dispatch(FetchListBannerActions());
     dispatch(FetchListMovieAction());
+    dispatch(getInfoBookingAction());
   }, [dispatch]);
 
   const bannerList = useSelector((state) => state.movieReducers.bannerList);

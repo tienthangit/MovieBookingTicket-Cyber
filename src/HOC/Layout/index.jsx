@@ -7,7 +7,7 @@ import './style.css'
 
 function Layout(props) {
   const { Title } = Typography;
-  const cinema = useSelector((state) => state.cinema);
+  const cinema = useSelector((state) => state.quanLyRapReducers.listInfoCinema);
 
   return (
     <div className="template">
@@ -32,7 +32,7 @@ function Layout(props) {
             <Col span={8}>
               <Title level={4}>Đối tác</Title>
               <div className="logo-col">
-                {cinema ? cinema.cinemaList?.map((item) => (
+                {cinema ? cinema?.map((item) => (
                   <img key={item.maHeThongRap} src={item.logo} alt={item.maHeThongRap} style={{ width: 30, marginRight:20 }} />
                 )) : 'không tồn tại'}
               </div>
