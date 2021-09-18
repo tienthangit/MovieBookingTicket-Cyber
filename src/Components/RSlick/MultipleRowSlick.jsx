@@ -49,7 +49,7 @@ export default function MultipleRowSlick(props) {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
-  console.log('arrFilm', arrFilm);
+  // console.log('arrFilm', arrFilm);
   const { Text } = Typography;
   let phimDangChieu = dangChieu === true ? 'active_Film' : 'none_active_Film';
   let phimSapChieu = sapChieu === true ? 'active_Film' : 'none_active_Film';

@@ -38,7 +38,7 @@ export default function CinemaListInfo(props) {
 												<Text style={{ textAlign: 'left', display: 'block' }} type="primary">{lstCumRap.diaChi}</Text>
 												<div className="grid grid-cols-3 gap-4">
 													{dsPhim.lstLichChieuTheoPhim?.slice(0, 10).map((lichChieu, index) => {
-														return <NavLink to='/' className="col-span-1 gioChieu">{moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}</NavLink>
+														return <NavLink to={`/booking/${lichChieu.maLichChieu}`} className="col-span-1 gioChieu">{moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}</NavLink>
 													})}
 												</div>
 											</div>

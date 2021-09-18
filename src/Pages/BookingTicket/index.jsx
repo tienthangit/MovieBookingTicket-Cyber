@@ -11,19 +11,19 @@ function BookingTicket(props) {
   const dispatch = useDispatch();
 
   const { detailRoomTicket, listSeatSelected } = useSelector(
-    (state) => state.bookingTicketReducer
+    state => state.bookingTicketReducer
   );
 
-  const { userLogin } = useSelector((state) => state.userReducer);
+  const { userLogin } = useSelector(state => state.userReducer);
 
   const { thongTinPhim, danhSachGhe } = detailRoomTicket;
 
-  const handleSelected = (ghe) => {
+  const handleSelected = ghe => {
     return () => {
       let cloneGheDangDat = [...listSeatSelected];
 
       let findIndex = cloneGheDangDat.findIndex(
-        (item) => item.maGhe === ghe.maGhe
+        item => item.maGhe === ghe.maGhe
       );
 
       // chưa có sẽ là findIndex = -1 nếu có rồi sẽ là 1
@@ -42,9 +42,20 @@ function BookingTicket(props) {
       let classGheVip = ghe.loaiGhe === "Vip" ? "gheVip" : "";
       let classGheDaDat = ghe.daDat === true ? "gheDaDat" : "";
       let classGheDangChon = "";
+
+      //Kiểm tra ghế đang chọn với danhSachGhe
       let indexGheDangChon = listSeatSelected.findIndex(
-        (item) => item.maGhe === ghe.maGhe
+        gheDangChon => gheDangChon.maGhe === ghe.maGhe
       );
+
+      // //Kiểm tra ghế khách đang đặt với danhSachGhe
+      // let classGheKhachChon = "";
+      // let indexGheKhachChon = listUserSelected.findIndex(
+      //   gheKhachChon => gheKhachChon.maGhe === ghe.maGhe
+      // );
+      // if (indexGheKhachChon != -1) {
+      //   classGheKhachChon = "gheKhachDangDat";
+      // }
 
       let classGheDaDuocMinhDat = "";
       if (userLogin.taiKhoan === ghe.taiKhoanNguoiDat) {
@@ -59,7 +70,7 @@ function BookingTicket(props) {
           <button
             onClick={handleSelected(ghe)}
             disabled={ghe.daDat}
-            className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDangChon} ${classGheDaDuocMinhDat}`}
+            className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDangChon} ${classGheDaDuocMinhDat} `}
             key={index}>
             {ghe.daDat ? (
               classGheDaDuocMinhDat != "" ? (
@@ -68,10 +79,12 @@ function BookingTicket(props) {
                 <CloseOutlined
                   style={{ fontFamily: "bold", fontSize: "1.3rem" }}
                 />
-              )
-            ) : (
+              ) // kiểm tra nếu là khách khác đang chọn sẽ hiện ra iconTeam
+            ) :
+              // classGheKhachChon != "" ? (
+              // <TeamOutlined style={{ fontSize: "20px" }} />
               ghe.stt
-            )}
+            }
           </button>
           {(index + 1) % 16 === 0 ? <br /> : ""}
         </Fragment>
@@ -132,6 +145,12 @@ function BookingTicket(props) {
               </button>
               <span className="font-bold">Ghế đã được mình đặt</span>
             </li>
+            {/* <li className="flex items-center">
+              <button className="ghe gheKhachDangDat ">
+                <UserOutlined style={{ fontSize: "20px" }} />
+              </button>
+              <span className="font-bold">Ghế Khách Đang Đặt</span>
+            </li> */}
             <li className="flex items-center">
               <button className="ghe gheVip "></button>
               <span className="font-bold">Ghế VIP</span>

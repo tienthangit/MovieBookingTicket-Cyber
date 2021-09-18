@@ -8,6 +8,13 @@
 .ant-tabs-tab:hover {
     color: green !important;
 }
+a:hover{
+    color: green !important;
+}
 .ant-tabs-nav-list{
     margin-left: 9% !important;
+}
+
+.ant-tabs-nav{
+    box-shadow: 0 0 15px rgb(0 0 0 / 30%);
 }

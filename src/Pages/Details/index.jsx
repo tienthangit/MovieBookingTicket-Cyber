@@ -18,6 +18,7 @@ export default function Detail() {
   const params = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
+    window.scrollTo(0,0)
     dispatch(FetchMovieDetailsAction(params.id))
   }, [dispatch]);
   const filmDetail = useSelector((state) => state.quanLyRapReducers.movieDetail);

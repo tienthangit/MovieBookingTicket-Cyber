@@ -27,13 +27,14 @@ const Home = (props) => {
 
   //gui dispatch len middleware va call api
   useEffect(() => {
+    window.scrollTo(0,0)
     dispatch(FetchListBannerActions());
     dispatch(FetchListMovieAction());
-  }, [dispatch]);
+  }, []);
 
   const bannerList = useSelector((state) => state.movieReducers.bannerList);
 
-  console.log(props.bannerList);
+  // console.log(props.bannerList);
 
   return (
     <Fragment>

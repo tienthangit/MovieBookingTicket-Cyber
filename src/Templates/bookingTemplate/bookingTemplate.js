@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { Fragment } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, NavLink } from "react-router-dom";
 import TicketBooking from "./ticketBooking";
 import { useDispatch, useSelector } from "react-redux"
 import { getDetailRoomTicketAction } from "../../Store/actions/bookingAction";
-import { Tabs } from 'antd';
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Tabs, Tooltip, Avatar } from 'antd';
+import { UserOutlined, DollarOutlined, TagsOutlined, HomeOutlined } from "@ant-design/icons";
 import ResultBooking from "../../Pages/ResultBooking";
 import { createActions } from "../../Store/constants/createAction";
 import { CHUYEN_TAB_ACTIVE } from "../../Store/constants/bookingConstant";
@@ -19,19 +18,41 @@ function BookingTemplate(props) {
   const { Component, ...restParams } = props;
 
   useEffect(() => {
+    window.scrollTo(0,0)
     dispatch(getDetailRoomTicketAction(props.computedMatch.params.id))
+    return () => {
+      dispatch(createActions(CHUYEN_TAB_ACTIVE, '1'))
+    }
   }, [])
+
 
   const { tabActive } = useSelector(state => state.bookingTicketReducer)
 
-  const user = useSelector(state => state.userReducer.userLogin)
-  const operations = <div className="flex py-4 justify-end items-center">
-    <Avatar
-      style={{ backgroundColor: "#fb4226", lineHeight: '18px' }}
-      icon={<UserOutlined />}
-    />
-    <span className="mx-3">{user?.hoTen}</span>
+  //---------- Xử lý đăng xuất
+  const handleLogout = () => {
+    localStorage.removeItem("USER_LOGIN");
+    localStorage.removeItem("toKen");
+    window.location.reload();
+  };
+
+  const text = <NavLink to="/" onClick={handleLogout} className="mx-4">
+    Đăng xuất
+  </NavLink>
+
+
+  const userLogin = useSelector(state => state.userReducer.userLogin)
+  const operations = <div className="flex justify-end items-center cursor-pointer mr-3">
+    <Tooltip placement="bottom" title={text}>
+      <Avatar
+        style={{ backgroundColor: "#80808063", lineHeight: "22px" }}
+        icon={<UserOutlined />}
+      />
+      <span className="ml-3">{userLogin?.hoTen}</span>
+    </Tooltip>
   </div>
+
+  //---------- Xử lý đăng xuất
+
 
   const onChangeTab = (key) => {
     dispatch(createActions(CHUYEN_TAB_ACTIVE, key))
@@ -53,11 +74,14 @@ function BookingTemplate(props) {
               <div className="grid grid-cols-4 h-full">
                 <div className="col-span-3">
                   <Tabs defaultActiveKey='1' activeKey={tabActive} onChange={onChangeTab} tabBarExtraContent={operations} className="">
-                    <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
+                    <TabPane tab={<span> <DollarOutlined style={{ fontSize: 25, margin: '10px 10px 10px 0' }} /> CHỌN GHẾ & THANH TOÁN </span>} key="1">
                       <Component {...propsRoute} />
                     </TabPane>
-                    <TabPane tab="02 KẾT QUẢ ĐẶT VÉ" key="2">
+                    <TabPane tab={<span> <TagsOutlined style={{ fontSize: 25, margin: '10px 10px 10px 0' }} /> KẾT QUẢ ĐẶT VÉ </span>} key="2">
                       <ResultBooking {...propsRoute} />
+                    </TabPane>
+                    <TabPane tab={
+                      <NavLink to='/'>  <HomeOutlined style={{ fontSize: 25, margin: '10px 10px 10px 0' }} />TRANG CHỦ </NavLink>} key="3">
                     </TabPane>
                   </Tabs>
                 </div>
