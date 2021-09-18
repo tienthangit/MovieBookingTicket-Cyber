@@ -23,4 +23,10 @@ export const userServices = {
             data: data
         })
     },
+    layThongTinNguoiDung(){
+      return requests({
+        url:`${DOMAIN_CYBER_MOVIE}/api/QuanLyNguoiDung/ThongTinTaikhoan`,
+        method:'POST'
+      })
+    }
 }

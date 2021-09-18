@@ -12,7 +12,7 @@ const initialState = {
     userLogin: user,
     userLoginDefault: null,
     infoUser: [],
-    infoDetailUser: [],
+    infoDetailUser: null,
 }
 
 export const userReducer = (state = initialState, { type, payload }) => {

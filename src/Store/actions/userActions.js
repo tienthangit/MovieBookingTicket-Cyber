@@ -21,29 +21,33 @@ export const SignInAction = (userLogin, callback) => {
 
 
 export const SignUpAction = (userNew, callback) => {
-    return (dispatch) => {
-        userServices.signUp(userNew)
-            .then((res) => {
-                alert(res.data.message);
-                callback();
-            })
-            .catch((err) => {
-                console.log(err.response.data);
-            })
-    }
+  return (dispatch) => {
+    userServices.signUp(userNew)
+      .then((res) => {
+        alert(res.data.message);
+        callback();
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      })
+  }
 }
 
-export const CapNhatThongTinNguoiDung = (user) =>{
-    return async (dispatch) =>{
-        try {
-            const result = await userServices.CapNhatThongTinNguoiDung(user);
-            console.log(result);
-            if(result.data.statusCode === 200){
-                dispatch({type: FETCH_INFO_USER, newUserInfo: result.data.content });
-            }
-        }
-        catch (err) {
-            console.log('err',err);
-        }
+export const CapNhatThongTinNguoiDung = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await userServices.layThongTinNguoiDung();
+      const { taiKhoan, matKhau, hoTen, email, soDT, maNhom } = data.content;
+      const user = { taiKhoan, matKhau, hoTen, email, soDT, maNhom,
+        maLoaiNguoiDung: 'KhachHang',}
+      const result = await userServices.CapNhatThongTinNguoiDung(user);
+      console.log(result);
+      if (result.data.statusCode === 200) {
+        dispatch(createActions.FETCH_INFO_USER,result.data.content);
+      }
     }
+    catch (err) {
+      console.log('err', err);
+    }
+  }
 }
