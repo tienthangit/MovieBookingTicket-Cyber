@@ -15,5 +15,18 @@ export const userServices = {
             method: 'POST',
             data: userNew
         })
+    },
+    CapNhatThongTinNguoiDung(data) {
+        return requests({
+            url: `${DOMAIN_CYBER_MOVIE}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+            method: 'PUT',
+            data: data
+        })
+    },
+    layThongTinNguoiDung(){
+      return requests({
+        url:`${DOMAIN_CYBER_MOVIE}/api/QuanLyNguoiDung/ThongTinTaikhoan`,
+        method:'POST'
+      })
     }
 }
