@@ -9,6 +9,7 @@ import "./style.css";
 export default function Header(props) {
   const userLogin = useSelector(state => state.userReducer.userLogin);
 
+  // console.log(userLogin);
   const handleLogout = () => {
     localStorage.removeItem("USER_LOGIN");
     localStorage.removeItem("toKen");
