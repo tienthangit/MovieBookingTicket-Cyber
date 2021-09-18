@@ -12,7 +12,7 @@ export default function Profile() {
   useEffect(() => {
     dispatch(CapNhatThongTinNguoiDung())
   },[dispatch])
-  const userLogin = useSelector((state) => state.userReducer.infoDetailUser);
+  // const userLogin = useSelector((state) => state.userReducer.infoUser);
   const infoUser = useSelector((state) => state.userReducer.infoUser);
 
   const renderInfoUser = () => {
@@ -37,16 +37,16 @@ export default function Profile() {
   return (
     <Tabs defaultActiveKey="1">
       <TabPane tab="Thông tin cá nhân" key="1">
-        {userLogin ? <>
-          <Input size="large" value={userLogin.taiKhoan} prefix='Tài khoản: ' />
+        {infoUser ? <>
+          <Input size="large" value={infoUser.taiKhoan} prefix='Tài khoản: ' />
           <br />
-          <Input type="password" size="large" value={userLogin.matKhau} prefix='Mật khẩu: ' />
+          <Input type="password" size="large" value={infoUser.matKhau} prefix='Mật khẩu: ' />
           <br />
-          <Input size="large" value={userLogin.hoTen} prefix='Họ tên: ' />
+          <Input size="large" value={infoUser.hoTen} prefix='Họ tên: ' />
           <br />
-          <Input size="large" value={userLogin.email} prefix='Email: ' />
+          <Input size="large" value={infoUser.email} prefix='Email: ' />
           <br />
-          <Input size="large" value={userLogin.soDt} prefix='Số điện thoại: ' />
+          <Input size="large" value={infoUser.soDt} prefix='Số điện thoại: ' />
           <br />
           <Button type="primary" danger>
             Lưu thay đổi

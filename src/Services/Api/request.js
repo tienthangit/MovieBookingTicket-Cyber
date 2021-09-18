@@ -18,9 +18,6 @@ export const requests = ({ url, data, params, method }) => {
             ...variables.headers,
             Authorization: "Bearer " + toKen,
         }
-        variables.data ={
-            ...variables.data
-        }
     }
     return axios(variables)
 }
