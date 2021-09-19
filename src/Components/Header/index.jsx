@@ -5,8 +5,10 @@ import { useSelector } from "react-redux";
 import { Avatar, Tooltip, Popover } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import "./style.css";
+import { useHistory } from "react-router";
 
 export default function Header(props) {
+  const history = useHistory();
   const userLogin = useSelector(state => state.userReducer.userLogin);
 
   // console.log(userLogin);
@@ -40,7 +42,9 @@ export default function Header(props) {
                 height: 25,
                 margin: "0 10px",
               }}></span>
-            <button> PROFILE </button>
+            <button onClick={() =>{
+              history.push('/profile')
+            }}> PROFILE </button>
           </div>
         </>
       );
