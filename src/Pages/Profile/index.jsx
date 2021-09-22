@@ -1,19 +1,43 @@
-import React,{ useEffect, useState} from 'react'
-import { Tabs, Input,Button } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Tabs, Input, Button, Typography } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import {CapNhatThongTinNguoiDung} from '../../Store/actions/userActions'
+import { CapNhatThongTinNguoiDung } from '../../Store/actions/userActions'
 import moment from 'moment';
+import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, CloseOutlined } from "@ant-design/icons";
+import { NavLink } from 'react-router-dom';
+import logoSignIn from "../../assets/logoSignIn.png";
+import { useFormik } from "formik";
 
 const { TabPane } = Tabs;
+const { Text } = Typography;
 
-export default function Profile() {
+export default function Profile(props) {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(CapNhatThongTinNguoiDung())
-  },[dispatch])
-  // const userLogin = useSelector((state) => state.userReducer.infoUser);
-  const infoUser = useSelector((state) => state.userReducer.infoUser);
+  const { infoUser } = useSelector((state) => state.userReducer);
+
+  const [isUpdatingProfile, setUpdatingProfile] = useState(false);
+  // state for form
+  const [userInfoState, setUserInfoState] = useState(null);
+
+  const [userInfo, setUserInfo] = useState(null);
+
+  const getInfoUser = () => {
+    const { userLogin } = props.infoUser || '';
+    const { taiKhoan, matKhau, email, hoTen, soDT, maNhom, loaiNguoiDung } = userLogin || '';
+    const user = {
+      taiKhoan: taiKhoan,
+      matKhau: matKhau,
+      email: email,
+      soDt: soDT,
+      maNhom: maNhom,
+      maLoaiNguoiDung: loaiNguoiDung,
+      hoTen: hoTen
+    };
+    setUserInfo(user);
+    setUserInfoState(user)
+  }
+
 
   const renderInfoUser = () => {
     return infoUser.thongTinDatVe?.map((info) => {
@@ -34,23 +58,51 @@ export default function Profile() {
     })
   }
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getInfoUser();
+
+    console.log('userInfo: ', userInfoState);
+  }
+  const handleChange = (e) => {
+    setUserInfoState({
+      ...userInfoState,
+      [e.target.name]: e.target.value
+    })
+  }
+
   return (
     <Tabs defaultActiveKey="1">
       <TabPane tab="Thông tin cá nhân" key="1">
         {infoUser ? <>
-          <Input size="large" value={infoUser.taiKhoan} prefix='Tài khoản: ' />
-          <br />
-          <Input type="password" size="large" value={infoUser.matKhau} prefix='Mật khẩu: ' />
-          <br />
-          <Input size="large" value={infoUser.hoTen} prefix='Họ tên: ' />
-          <br />
-          <Input size="large" value={infoUser.email} prefix='Email: ' />
-          <br />
-          <Input size="large" value={infoUser.soDt} prefix='Số điện thoại: ' />
-          <br />
-          <Button type="primary" danger>
-            Lưu thay đổi
-          </Button>
+          <form onSubmit={handleSubmit} className="signIn-form sm:container rounded-lg">
+            <NavLink to="/"><img className="logoLogin" src={logoSignIn} alt="logo" /></NavLink>
+            <NavLink to="/" exact className="btnClose text-center"><CloseOutlined /></NavLink>
+            <div className="mb-2">
+              <Text className="text-gray-500" strong> FullName:</Text>
+              <Input name="hoTen" size="large" prefix={<UserOutlined />} onChange={handleChange} value={infoUser?.hoTen || ''} />
+            </div>
+            <div className="mb-2">
+              <Text className="text-gray-500" strong>Username:</Text>
+              <Input name="taiKhoan" size="large" prefix={<UserOutlined />} onChange={handleChange} value={infoUser?.taiKhoan || ''} />
+            </div>
+            <div className="mb-2">
+              <Text className="text-gray-500" strong>Password:</Text>
+              <Input.Password name="matKhau" size="large" prefix={<LockOutlined />} onChange={handleChange} value={infoUser?.matKhau || ''} />
+            </div>
+            <div className="mb-2">
+              <Text className="text-gray-500" strong>Email:</Text>
+              <Input name="email" size="large" prefix={<MailOutlined />} onChange={handleChange} value={infoUser?.email || ''} />
+            </div>
+            <div className="mb-2">
+              <Text className="text-gray-500" strong>Phone:</Text>
+              <Input name="soDt" size="large" prefix={<PhoneOutlined />} onChange={handleChange} value={infoUser?.soDt || ''} />
+            </div>
+
+            <Button className="btnLogin my-3" htmlType="submit" type="primary" block>Lưu thay đổi
+            </Button>
+          </form>
         </> : 'none'}
 
       </TabPane>

@@ -16,11 +16,11 @@ export const userServices = {
             data: userNew
         })
     },
-    CapNhatThongTinNguoiDung(data) {
+    CapNhatThongTinNguoiDung(formData) {
         return requests({
             url: `${DOMAIN_CYBER_MOVIE}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
             method: 'PUT',
-            data: data
+            data: formData
         })
     },
     layThongTinNguoiDung(){

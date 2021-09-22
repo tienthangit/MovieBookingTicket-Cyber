@@ -33,17 +33,14 @@ export const SignUpAction = (userNew, callback) => {
   }
 }
 
-export const CapNhatThongTinNguoiDung = () => {
+export const CapNhatThongTinNguoiDung = (formData, callback) => {
   return async (dispatch) => {
     try {
-      const { data } = await userServices.layThongTinNguoiDung();
-      const { taiKhoan, matKhau, hoTen, email, soDT, maNhom } = data.content;
-      const user = { taiKhoan, matKhau, hoTen, email, soDT, maNhom,
-        maLoaiNguoiDung: 'KhachHang',}
-      const result = await userServices.CapNhatThongTinNguoiDung(user);
+      const result = await userServices.CapNhatThongTinNguoiDung(formData);
       console.log(result);
       if (result.data.statusCode === 200) {
         dispatch(createActions.FETCH_INFO_USER,result.data.content);
+        callback();
       }
     }
     catch (err) {
