@@ -39,7 +39,10 @@ export default function Header(props) {
                 height: 25,
                 margin: "0 10px",
               }}></span>
-            <button> PROFILE </button>
+            <button className="tracking-wider hover:text-red-600 transition duration-300">
+              {" "}
+              PROFILE{" "}
+            </button>
           </div>
         </>
       );
@@ -47,12 +50,12 @@ export default function Header(props) {
       return (
         <>
           <Menu.Item key="HOME">
-            <NavLink exact to="/signin">
+            <NavLink className="tracking-wider" exact to="/signin">
               SIGN IN
             </NavLink>
           </Menu.Item>
           <Menu.Item key="NEWS">
-            <NavLink exact to="/signup">
+            <NavLink className="tracking-wider" exact to="/signup">
               SIGN UP
             </NavLink>
           </Menu.Item>
@@ -73,22 +76,22 @@ export default function Header(props) {
         </div>
         <div className="menuItem">
           <Menu.Item key="HOME">
-            <NavLink exact to="/">
+            <NavLink className="tracking-wider" exact to="/">
               HOME
             </NavLink>
           </Menu.Item>
           <Menu.Item key="NEWS">
-            <NavLink exact to="/">
+            <NavLink className="tracking-wider" exact to="/">
               NEWS
             </NavLink>
           </Menu.Item>
           <Menu.Item key="CONTACT">
-            <NavLink exact to="/">
+            <NavLink className="tracking-wider" exact to="/">
               CONTACT
             </NavLink>
           </Menu.Item>
           <Menu.Item key="ABOUT">
-            <NavLink exact to="/">
+            <NavLink className="tracking-wider" exact to="/">
               ABOUT
             </NavLink>
           </Menu.Item>

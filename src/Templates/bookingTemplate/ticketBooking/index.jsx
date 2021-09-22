@@ -19,7 +19,12 @@ function TicketBooking(props) {
     return listSeatSelected
       ?.sort((b, a) => b.tenGhe - a.tenGhe)
       .map((ghe, index) => {
-        return <span className="text-lg font-bold"> {ghe.tenGhe} </span>;
+        return (
+          <span key={index} className="text-lg font-bold">
+            {" "}
+            {ghe.tenGhe}{" "}
+          </span>
+        );
       });
   };
 

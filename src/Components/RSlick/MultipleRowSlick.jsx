@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
-import { Card } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button,Typography } from "antd";
 import {SET_FILM_DANG_CHIEU,SET_FILM_SAP_CHIEU} from '../../Store/constants/movieConstants'
 import { NavLink } from "react-router-dom";
-import './MultipleRowSlick.module.css';
 import styleSlick from './MultipleRowSlick.module.css';
 
 
@@ -76,7 +74,7 @@ export default function MultipleRowSlick(props) {
                     className="opacity-0 w-full"
                     alt="Avatar"
                   />
-                </div>
+              </div>
               <div style={{position:'relative'}}>
                 <NavLink className="movie_detail" to={`/detail/${phim.maPhim}`}>
                   <b>Detail</b>

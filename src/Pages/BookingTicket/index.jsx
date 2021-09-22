@@ -1,39 +1,82 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import srceen from "../../assets/screen.png";
 import { Tag } from "antd";
 import { CloseOutlined, UserOutlined } from "@ant-design/icons";
 import "./style.css";
-import { createActions } from "../../Store/constants/createAction";
-import { SET_GHE_DANG_DAT } from "../../Store/constants/bookingConstant";
+// import { createActions } from "../../Store/constants/createAction";
+// import {
+//   DAT_GHE,
+//   SET_GHE_DANG_DAT,
+// } from "../../Store/constants/bookingConstant";
+// import { connection } from "../../index";
+import {
+  bookingSeats,
+  getDetailRoomTicketAction,
+} from "../../Store/actions/bookingAction";
 
 function BookingTicket(props) {
   const dispatch = useDispatch();
 
-  const { detailRoomTicket, listSeatSelected } = useSelector(
-    state => state.bookingTicketReducer
-  );
+  const userLogin = useSelector(state => state.userReducer.userLogin);
 
-  const { userLogin } = useSelector(state => state.userReducer);
-
+  const { detailRoomTicket,listSeatSelected } = useSelector(state => state.bookingTicketReducer);
   const { thongTinPhim, danhSachGhe } = detailRoomTicket;
+
+  useEffect(() => {
+    dispatch(getDetailRoomTicketAction(props.match.params.id));
+    // có 1 user nào đặt vé thành công là sẽ reload lại trang
+    // connection.on("datVeThanhCong", () => {
+    //   dispatch(getDetailRoomTicketAction(props.match.params.id));
+    // });
+
+    //Vừa vào trang sẽ tự động load tất cả ghế của ngưới khác đang đặt
+    // connection.invoke("loadDanhSachGhe", props.match.params.id);
+
+    //Load danh sách ghế đang đặt từ sever về (lắng nghe tín hiệu từ sever phát về)
+    // connection.on("loadDanhSachGheDaDat", dsGheKhachDat => {
+    //   console.log("loadDanhSachGheDaDat", dsGheKhachDat);
+
+    //   //Bước 1 : Loại mình ra khỏi danh sách dsGheKhachDat
+    //   dsGheKhachDat = dsGheKhachDat.filter(
+    //     item => item.taiKhoan !== userLogin.taiKhoan
+    //   );
+    //   console.log(dsGheKhachDat);
+
+    //   //Bước 2 : Gộp danh sách ghế khách đặt thành 1 mảng
+    //   let arrGheKhachDat = dsGheKhachDat.reduce((result, item, index) => {
+    //     let arrGhe = JSON.parse(item.danhSachGhe);
+    //     return (result = [...result, ...arrGhe]);
+    //   }, []);
+
+    //   //--------- lỌC RA NHỮNG GHẾ GIỐNG NHAU TRONG MẢNG (NẾU CÓ)
+    //   // arrGheKhachDat = arrGheKhachDat.filter(
+    //   //   (item, index) => arrGheKhachDat.indexOf(item) === index
+    //   // );
+
+    //   //Bước 3 : Đưa dsGheKhachDat lên redux cập nhật
+    //   // dispatch(createActions(DAT_GHE, arrGheKhachDat));
+    //   console.log(arrGheKhachDat);
+    // });
+
+    //  Cài đặt sự kiện khi reload trang
+    // window.addEventListener("beforeunload", clearGhe);
+
+    // // Hoặc khi người dùng chuyển hướng trang khác
+    // return () => {
+    //   clearGhe();
+    //   window.removeEventListener("beforeunload", clearGhe);
+    // };
+  }, []);
+
+  // const clearGhe = () => {
+  //   connection.invoke("huyDat", userLogin.taiKhoan, props.match.params.id);
+  // };
 
   const handleSelected = ghe => {
     return () => {
-      let cloneGheDangDat = [...listSeatSelected];
-
-      let findIndex = cloneGheDangDat.findIndex(
-        item => item.maGhe === ghe.maGhe
-      );
-
-      // chưa có sẽ là findIndex = -1 nếu có rồi sẽ là 1
-      if (findIndex != -1) {
-        cloneGheDangDat.splice(findIndex, 1);
-      } else {
-        cloneGheDangDat = [...cloneGheDangDat, ghe];
-      }
-
-      dispatch(createActions(SET_GHE_DANG_DAT, cloneGheDangDat));
+      //dispatch lên serverBackEnd
+      dispatch(bookingSeats(ghe, props.match.params.id));
     };
   };
 
@@ -49,12 +92,12 @@ function BookingTicket(props) {
       );
 
       // //Kiểm tra ghế khách đang đặt với danhSachGhe
-      // let classGheKhachChon = "";
-      // let indexGheKhachChon = listUserSelected.findIndex(
-      //   gheKhachChon => gheKhachChon.maGhe === ghe.maGhe
+      // let indexGheDangDat = danhSachGheKhachDangDat?.findIndex(
+      //   GheDangDat => GheDangDat.maGhe === ghe.maGhe
       // );
-      // if (indexGheKhachChon != -1) {
-      //   classGheKhachChon = "gheKhachDangDat";
+      // let classGheDangDat = "";
+      // if (indexGheDangDat != -1) {
+      //   classGheDangDat = "gheKhachDangDat";
       // }
 
       let classGheDaDuocMinhDat = "";
@@ -69,7 +112,7 @@ function BookingTicket(props) {
         <Fragment key={index}>
           <button
             onClick={handleSelected(ghe)}
-            disabled={ghe.daDat}
+            disabled={ghe.daDat }
             className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDangChon} ${classGheDaDuocMinhDat} `}
             key={index}>
             {ghe.daDat ? (
@@ -80,10 +123,11 @@ function BookingTicket(props) {
                   style={{ fontFamily: "bold", fontSize: "1.3rem" }}
                 />
               ) // kiểm tra nếu là khách khác đang chọn sẽ hiện ra iconTeam
-            ) :
-              // classGheKhachChon != "" ? (
+            )
+              // : classGheDangDat != "" ? (
               // <TeamOutlined style={{ fontSize: "20px" }} />
-              ghe.stt
+              // )
+                :ghe.stt
             }
           </button>
           {(index + 1) % 16 === 0 ? <br /> : ""}
@@ -93,8 +137,18 @@ function BookingTicket(props) {
   };
 
   return (
-    <div>
-      <div className="container">
+    <div className="flex">
+      <div
+        className="w-4/6 leftBg"
+        style={{
+          background: `url(${thongTinPhim?.hinhAnh})`}}>
+        <img
+          className="opacity-0 w-full"
+          src={thongTinPhim?.hinhAnh}
+          alt="hinhAnh"
+        />
+      </div>
+      <div className="p-4">
         <div className="gird grid-cols-6">
           <div className="flex">
             <img
