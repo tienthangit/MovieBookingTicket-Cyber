@@ -1,12 +1,14 @@
-import React from "react";
-import { Image, Menu } from "antd/lib";
+import React, { useEffect } from "react";
+import { Image, Menu, Button } from "antd";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Avatar, Tooltip, Popover } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import "./style.css";
+import { useHistory } from "react-router";
 
 export default function Header(props) {
+  const history = useHistory();
   const userLogin = useSelector(state => state.userReducer.userLogin);
 
   // console.log(userLogin);
@@ -40,7 +42,11 @@ export default function Header(props) {
                 height: 25,
                 margin: "0 10px",
               }}></span>
-            <button className="tracking-wider hover:text-red-600 transition duration-300">
+            <button
+              onClick={() => {
+                history.push("/profile");
+              }}
+              className="tracking-wider hover:text-red-600 transition duration-300">
               {" "}
               PROFILE{" "}
             </button>

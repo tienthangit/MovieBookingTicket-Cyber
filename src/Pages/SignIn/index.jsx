@@ -7,7 +7,7 @@ import { UserOutlined, LockOutlined, CloseOutlined } from "@ant-design/icons";
 import logoSignIn from "../../assets/logoSignIn.png";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { SignInAction } from "../../Store/actions/userActions";
+import { FetchInfoUser, SignInAction } from "../../Store/actions/userActions";
 
 const { Text } = Typography;
 
