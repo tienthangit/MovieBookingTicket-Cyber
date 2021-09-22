@@ -4,3 +4,4 @@ export const DAT_VE_HOAN_TAT = 'DAT_VE_HOAN_TAT';
 export const GET_INFO_BOOKING = 'GET_INFO_BOOKING';
 export const CHUYEN_TAB = 'CHUYEN_TAB';
 export const CHUYEN_TAB_ACTIVE = 'CHUYEN_TAB_ACTIVE';
+export const DAT_GHE = 'DAT_GHE';

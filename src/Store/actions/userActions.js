@@ -1,4 +1,5 @@
 import { userServices } from "../../Services/userServices";
+import { openNotificationWithIcon } from "../../Utils/notification/notification";
 import { USER_LOGIN } from "../../Utils/systemSetting";
 import { createActions } from "../constants/createAction";
 import { USER_SIGNIN } from '../constants/userConstants'
@@ -14,7 +15,8 @@ export const SignInAction = (userLogin, callback) => {
                 console.log(res.data.content);
             })
             .catch((err) => {
-                console.log(err.response.data);
+                openNotificationWithIcon(`error`, err.response.data?.content)
+                console.log(err.response?.data);
             })
     }
 }
@@ -24,10 +26,13 @@ export const SignUpAction = (userNew, callback) => {
     return (dispatch) => {
         userServices.signUp(userNew)
             .then((res) => {
-                alert(res.data.message);
+                // alert(res.data.message);
+                openNotificationWithIcon(`success`, res.data?.message)
+                console.log(res);
                 callback();
             })
             .catch((err) => {
+                openNotificationWithIcon(`error`, err.response.data?.content)
                 console.log(err.response.data);
             })
     }

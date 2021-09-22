@@ -18,8 +18,7 @@ function BookingTemplate(props) {
   const { Component, ...restParams } = props;
 
   useEffect(() => {
-    window.scrollTo(0,0)
-    dispatch(getDetailRoomTicketAction(props.computedMatch.params.id))
+    window.scrollTo(0, 0)
     return () => {
       dispatch(createActions(CHUYEN_TAB_ACTIVE, '1'))
     }
