@@ -1,6 +1,11 @@
 .imgBanner {
-    margin-top:4%;
+    margin-top:3%;
     height: 700px;
+    position:relative;
+  }
+  .slick-dots li button{
+    position: absolute;
+    bottom:30px;
   }
   h1.ant-typography,
   .ant-typography h1 {

@@ -35,8 +35,8 @@ export default function Profile(props) {
     taiKhoan: userLogin.taiKhoan,
     email: newUserInfo.email ?? userLogin.email ?? thongTinNguoiDung.email,
     soDt: newUserInfo.soDT ?? userLogin.soDT ?? thongTinNguoiDung.soDt,
-    maNhom: newUserInfo.maNhom ?? userLogin.maNhom ?? thongTinNguoiDung.maNhom,
-    matKhau: newUserInfo.matKhau ?? userLogin.matKhau ?? thongTinNguoiDung.matKhau,
+    maNhom: newUserInfo.maNhom ?? thongTinNguoiDung.maNhom,
+    matKhau: newUserInfo.matKhau  ?? thongTinNguoiDung.matKhau,
     maLoaiNguoiDung: newUserInfo.maLoaiNguoiDung ?? userLogin.maLoaiNguoiDung ?? thongTinNguoiDung.maLoaiNguoiDung,
     hoTen: newUserInfo.hoTen ?? userLogin.hoTen ?? thongTinNguoiDung.hoTen,
   });
@@ -124,8 +124,8 @@ export default function Profile(props) {
             <Input name="soDt" size="large" prefix={<PhoneOutlined />} onChange={handleChange} value={user.soDt || ""} />
           </div>
           <div className="mb-2">
-            <Text className="text-gray-500" strong> UserID: </Text>
-            <Input name="maLoaiNguoidung" size="large" prefix={<UserOutlined />} onChange={handleChange} value={user.maLoaiNguoidung || ""} />
+            <Text className="text-gray-500" strong> GroupID: </Text>
+            <Input name="maNhom" size="large" prefix={<UserOutlined />} onChange={handleChange} value={user.maNhom || ""} />
           </div>
 
           <Button className="btnLogin my-3" htmlType="submit" type="primary" block >

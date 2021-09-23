@@ -20,6 +20,7 @@
     "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
+    "reactjs-media": "^1.5.1",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
