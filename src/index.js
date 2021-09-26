@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import { DOMAIN_CYBER_MOVIE } from './Utils/systemSetting'
 
 //Cấu hình realtime (websocket với signalR)
-import * as signalR from '@aspnet/signalr'
+// import * as signalR from '@aspnet/signalr'
 
 //set up store
 import { Provider } from 'react-redux';

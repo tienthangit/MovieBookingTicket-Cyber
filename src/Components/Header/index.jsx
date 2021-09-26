@@ -92,16 +92,6 @@ export default function Header(props) {
               NEWS
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="CONTACT">
-            <NavLink className="tracking-wider" exact to="/">
-              CONTACT
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item key="ABOUT">
-            <NavLink className="tracking-wider" exact to="/">
-              ABOUT
-            </NavLink>
-          </Menu.Item>
         </div>
         <div className="menuItem">{renderUser()}</div>
       </Menu>
