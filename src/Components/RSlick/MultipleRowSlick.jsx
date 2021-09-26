@@ -57,6 +57,7 @@ export default function MultipleRowSlick(props) {
   let phimSapChieu = sapChieu === true ? "active_Film" : "none_active_Film";
 
   const [visible, setVisible] = useState(false);
+  const [curPhim,setCurPhim] = useState(null);
 
   return (
     <div>
@@ -91,13 +92,16 @@ export default function MultipleRowSlick(props) {
                 <img src={phim.hinhAnh} className="opacity-0 w-full imd-detail-mul" alt="Avatar" />
                 <div className="movie-detail-mul"></div>
                 <div className="movie-trailer-mul">
-                  <button onClick={() => setVisible(true)}>
+                  <button onClick={() => {
+                    setVisible(true) 
+                    setCurPhim(phim)
+                  }}>
                     <PlayCircleOutlined className="play-video-mul" />
                   </button>
-                  <Modal title={phim.tenPhim} centered visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)} width={700}
+                  {curPhim && <Modal title={curPhim.tenPhim} centered visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)} width={700}
                   footer={null}>
-                    <iframe src={phim.trailer} height="500" width="100%" allow="autoplay" frameBorder="0"></iframe>
-                  </Modal>
+                    <iframe src={curPhim.trailer} height="500" width="100%" allow="autoplay" frameBorder="0"></iframe>
+                  </Modal>}
                 </div>
               </div>
               <div style={{ position: "relative" }}>

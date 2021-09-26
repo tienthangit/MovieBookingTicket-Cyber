@@ -38,16 +38,6 @@ export default function Header(props) {
               NEWS
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="CONTACT">
-            <NavLink exact to="/">
-              CONTACT
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item key="ABOUT">
-            <NavLink exact to="/">
-              ABOUT
-            </NavLink>
-          </Menu.Item>
         </div>
         <>
           {userLogin ? (<>

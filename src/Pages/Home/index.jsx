@@ -50,7 +50,7 @@ const Home = (props) => {
         </Slider>
 
         {/* movie selection */}
-        <Title>Movie Selection</Title>
+        <Title className="showtime">Movie Selection</Title>
         <div className="container mx-auto">
           <MultipleRowSlick />
         </div>
