@@ -12,6 +12,7 @@ import MultipleRowSlick from "../../Components/RSlick/MultipleRowSlick";
 import Slider from "react-slick";
 import { getInfoBookingAction } from "../../Store/actions/bookingAction";
 import { CapNhatThongTinNguoiDung, layThongTinNguoiDungAction } from "../../Store/actions/userActions";
+import ReactPlayer from 'react-player'
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Home = (props) => {
   const { Title } = Typography;
   const settings = {
     dots: true,
-    autoplay:true,
+    autoplay: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -29,7 +30,7 @@ const Home = (props) => {
 
   //gui dispatch len middleware va call api
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     dispatch(FetchListBannerActions());
     dispatch(FetchListMovieAction());
     dispatch(getInfoBookingAction());
@@ -58,6 +59,29 @@ const Home = (props) => {
         {/* infor cinema */}
         <div className="cinemaListInfo">
           <CinemaListInfo />
+        </div>
+        {/* <!-- Button trigger modal --> */}
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Launch demo modal
+        </button>
+
+        {/* <!-- Modal --> */}
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <ReactPlayer url='https://youtu.be/0tm9ZbDxtFc' />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
         </div>
       </Layout>
     </Fragment>

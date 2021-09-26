@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
 import { useSelector, useDispatch } from 'react-redux';
-import { Button,Typography } from "antd";
-import {SET_FILM_DANG_CHIEU,SET_FILM_SAP_CHIEU} from '../../Store/constants/movieConstants'
+import { Button, Typography } from "antd";
+import { SET_FILM_DANG_CHIEU, SET_FILM_SAP_CHIEU } from '../../Store/constants/movieConstants'
 import { NavLink } from "react-router-dom";
 import './MultipleRowSlick.module.css';
 import styleSlick from './MultipleRowSlick.module.css';
 import { PlayCircleOutlined } from '@ant-design/icons'
 import { Modal } from "antd";
 import "./style.css"
+import ReactPlayer from 'react-player'
 
 
 
@@ -35,11 +36,24 @@ function SamplePrevArrow(props) {
 }
 
 export default function MultipleRowSlick(props) {
-  const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const arrFilmDefault = useSelector((state) => state.movieReducers.arrFilmDefault);
-  const {dangChieu,sapChieu} = useSelector((state) => state.movieReducers.arrFilm);
-  
+  const arrFilm = useSelector((state) => state.movieReducers.arrFilm);
+  const { dangChieu, sapChieu } = useSelector((state) => state.movieReducers.arrFilm);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
 
   const settings = {
     className: "center variable-width",
@@ -52,29 +66,26 @@ export default function MultipleRowSlick(props) {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
-  console.log('arrFilm', arrFilmDefault);
+  console.log('arrFilm', arrFilm);
   const { Text } = Typography;
   let phimDangChieu = dangChieu === true ? 'active_Film' : 'none_active_Film';
   let phimSapChieu = sapChieu === true ? 'active_Film' : 'none_active_Film';
 
   return (
     <div>
-      <Button className={`${styleSlick[phimDangChieu]}`} style={{marginRight:10,marginBottom:10}} type="primary" danger onClick={() =>{
-        const action = {type:SET_FILM_DANG_CHIEU}
+      <Button className={`${styleSlick[phimDangChieu]}`} style={{ marginRight: 10, marginBottom: 10 }} type="primary" danger onClick={() => {
+        const action = { type: SET_FILM_DANG_CHIEU }
         dispatch(action);
       }}>Phim Đang chiếu</Button>
-      <Button className={`${styleSlick[phimSapChieu]}`} type="primary" danger onClick={() =>{
-        const action = {type:SET_FILM_SAP_CHIEU}
+      <Button className={`${styleSlick[phimSapChieu]}`} type="primary" danger onClick={() => {
+        const action = { type: SET_FILM_SAP_CHIEU }
         dispatch(action);
       }}>Phim Sắp chiếu</Button>
       <Slider {...settings}>
-        {arrFilmDefault? arrFilmDefault.slice(0,20).map((phim,index) =>{
+        {arrFilm ? arrFilm.slice(0, 20).map((phim, index) => {
           return (
             <div key={index} className="flip-card px-2">
-              <div
-                className="flip-card-front"
-                style={{ background: `url(${phim.hinhAnh})` }}
-              >
+              <div className="flip-card-front" style={{ background: `url(${phim.hinhAnh})` }}>
                 <img
                   src={phim.hinhAnh}
                   className="opacity-0 w-full imd-detail-mul"
@@ -82,24 +93,14 @@ export default function MultipleRowSlick(props) {
                 />
                 <div className="movie-detail-mul"></div>
                 <div className="movie-trailer-mul">
-                  <button onClick={() => setVisible(true)}>
+                  <button type="button" data-toggle="modal" data-target="#exampleModal">
                     <PlayCircleOutlined className="play-video-mul" />
-                    <Modal
-                      title={phim.tenPhim}
-                      centered
-                      visible={visible}
-                      onCancel={() => setVisible(false)}
-                      width={1000}
-                      footer={null}
-                    >
-                      <p>some contents...</p>
-                      <p>some contents...</p>
-                      <p>some contents...</p>
-                    </Modal>
-                    {/* <Modal  width="50%" footer={null} visible={state} onOk={handleOk} onCancel={handleCancel}>
-                    <YoutubePlayer src={phim.trailer} width='100%' height={500} />
-                  </Modal> */}
                   </button>
+                  <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
                 </div>
               </div>
               <div style={{ position: "relative" }}>
@@ -110,7 +111,7 @@ export default function MultipleRowSlick(props) {
               {phim.hot ? <button className="btn_hot">HOT</button> : <></>}
             </div>
           );
-        }):'none'}
+        }) : 'none'}
       </Slider>
     </div>
   );
