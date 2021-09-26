@@ -43,7 +43,8 @@ export default function Detail() {
       >
         <div className="row-detail">
           <Col className="img_detail" span={4}>
-            <img src={filmDetail.hinhAnh} alt={filmDetail.tenPhim} style={{ height: 300, width: "100%" }} />
+            <span className="title-maPhim">{filmDetail.maPhim}</span>
+            <img src={filmDetail.hinhAnh} alt={filmDetail.tenPhim} style={{ height: 300, width: "100%", position:'relative' }} />
             <div className="movie__detail"></div>
             <div className="movie_trailer">
               <button onClick={showModal}><PlayCircleOutlined className="play-video" /></button>
@@ -55,10 +56,7 @@ export default function Detail() {
           </Col>
           <Col span={12} className="detail-film">
             <Title className="ngayKhoiChieu" level={5}>{moment(filmDetail.ngayKhoiChieu).format('DD-MM-YYYY')}</Title>
-            <div className="row">
-              <Tag color="#f50">{filmDetail.maPhim}</Tag>
-              <Title level={3} className="tenPhim-detail">{filmDetail.tenPhim}</Title>
-            </div>
+            <Title level={3} className="tenPhim-detail">{filmDetail.tenPhim}</Title>
             <p>Nội dung: {filmDetail.moTa}</p>
           </Col>
           <Col span={8}>
@@ -69,11 +67,12 @@ export default function Detail() {
                 <div className="fill" />
               </div>
             </div>
+            <br/>
             <div className="star-rating"><Rate allowHalf value={filmDetail.danhGia / 2} /></div>
           </Col>
         </div>
 
-          <Title>Lịch chiếu</Title>
+          <Title style={{color: '#d65306'}}>Lịch chiếu</Title>
             <div className="lichChieu">
             <Tabs tabPosition={'left'}>
               {filmDetail ? filmDetail.heThongRapChieu?.map((heThongRapChieu, index) => {
