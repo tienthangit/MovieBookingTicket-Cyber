@@ -36,7 +36,7 @@ export default function Profile(props) {
     email: newUserInfo.email ?? userLogin.email ?? thongTinNguoiDung.email,
     soDt: newUserInfo.soDT ?? userLogin.soDT ?? thongTinNguoiDung.soDt,
     maNhom: newUserInfo.maNhom ?? thongTinNguoiDung.maNhom,
-    matKhau: newUserInfo.matKhau  ?? thongTinNguoiDung.matKhau,
+    matKhau:  thongTinNguoiDung.matKhau,
     maLoaiNguoiDung: newUserInfo.maLoaiNguoiDung ?? userLogin.maLoaiNguoiDung ?? thongTinNguoiDung.maLoaiNguoiDung,
     hoTen: newUserInfo.hoTen ?? userLogin.hoTen ?? thongTinNguoiDung.hoTen,
   });
@@ -100,32 +100,32 @@ export default function Profile(props) {
           <NavLink to="/" exact className="btnClose text-center"><CloseOutlined /></NavLink>
           <div className="mb-2">
             <Text className="text-gray-500" strong> Username: </Text>
-            <Input name="taiKhoan" size="large" prefix={<UserOutlined />} onChange={handleChange} value={userLogin.taiKhoan || ""} />
+            <Input name="taiKhoan" size="large" prefix={<UserOutlined />} onChange={handleChange} value={userLogin.taiKhoan} />
           </div>
           <div className="mb-2">
             <Text className="text-gray-500" strong>
               {" "}
               FullName:
             </Text>
-            <Input name="hoTen" size="large" prefix={<UserOutlined />} onChange={handleChange} value={user.hoTen || ""} />
+            <Input name="hoTen" size="large" prefix={<UserOutlined />} onChange={handleChange} value={user.hoTen} />
           </div>
           <div className="mb-2">
             <Text className="text-gray-500" strong> Password: </Text>
-            <Input.Password name="matKhau" size="large" prefix={<LockOutlined />} onChange={handleChange} value={user.matKhau || ""} />
+            <Input.Password name="matKhau" size="large" prefix={<LockOutlined />} onChange={handleChange} value={user.matKhau} />
           </div>
           <div className="mb-2">
             <Text className="text-gray-500" strong>
               Email:
             </Text>
-            <Input name="email" size="large" prefix={<MailOutlined />} onChange={handleChange} value={user.email || ""} />
+            <Input name="email" size="large" prefix={<MailOutlined />} onChange={handleChange} value={user.email} />
           </div>
           <div className="mb-2">
             <Text className="text-gray-500" strong> Phone: </Text>
-            <Input name="soDt" size="large" prefix={<PhoneOutlined />} onChange={handleChange} value={user.soDt || ""} />
+            <Input name="soDt" size="large" prefix={<PhoneOutlined />} onChange={handleChange} value={user.soDt} />
           </div>
           <div className="mb-2">
             <Text className="text-gray-500" strong> GroupID: </Text>
-            <Input name="maNhom" size="large" prefix={<UserOutlined />} onChange={handleChange} value={user.maNhom || ""} />
+            <Input name="maNhom" size="large" prefix={<UserOutlined />} onChange={handleChange} value={user.maNhom} />
           </div>
 
           <Button className="btnLogin my-3" htmlType="submit" type="primary" block >

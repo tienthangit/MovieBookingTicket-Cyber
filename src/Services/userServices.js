@@ -18,7 +18,7 @@ export const userServices = {
   },
   layThongTinNguoiDung() {
     return requests({
-      url: `${DOMAIN_CYBER_MOVIE}/api/QuanLyNguoiDung/ThongTinTaikhoan`,
+      url: `${DOMAIN_CYBER_MOVIE}/api/QuanLyNguoiDung/ThongTinTaiKhoan`,
       method: "POST",
     });
   },

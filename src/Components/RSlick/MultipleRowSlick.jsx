@@ -1,6 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
-import { Card } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button,Typography } from "antd";
 import {SET_FILM_DANG_CHIEU,SET_FILM_SAP_CHIEU} from '../../Store/constants/movieConstants'
@@ -9,7 +8,6 @@ import './MultipleRowSlick.module.css';
 import styleSlick from './MultipleRowSlick.module.css';
 import { PlayCircleOutlined } from '@ant-design/icons'
 import { Modal } from "antd";
-import {YoutubePlayer} from 'reactjs-media'
 import "./style.css"
 
 
@@ -37,21 +35,11 @@ function SamplePrevArrow(props) {
 }
 
 export default function MultipleRowSlick(props) {
-  const [state, setState] = useState(false);
+  const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const arrFilm = useSelector((state) => state.movieReducers.arrFilm);
+  const arrFilmDefault = useSelector((state) => state.movieReducers.arrFilmDefault);
   const {dangChieu,sapChieu} = useSelector((state) => state.movieReducers.arrFilm);
   
-  //show modal video
-  const showModal = () => {
-    setState(true);
-  }
-  const handleCancel = () => {
-    setState(false);
-  }
-  const handleOk = () => {
-    setState(false);
-  }
 
   const settings = {
     className: "center variable-width",
@@ -64,7 +52,7 @@ export default function MultipleRowSlick(props) {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
-  console.log('arrFilm', arrFilm);
+  console.log('arrFilm', arrFilmDefault);
   const { Text } = Typography;
   let phimDangChieu = dangChieu === true ? 'active_Film' : 'none_active_Film';
   let phimSapChieu = sapChieu === true ? 'active_Film' : 'none_active_Film';
@@ -80,32 +68,47 @@ export default function MultipleRowSlick(props) {
         dispatch(action);
       }}>Phim Sắp chiếu</Button>
       <Slider {...settings}>
-        {arrFilm? arrFilm.slice(0,20).map((phim,index) =>{
+        {arrFilmDefault? arrFilmDefault.slice(0,20).map((phim,index) =>{
           return (
-              <div key={index} className="flip-card px-2">
-                <div
-                  className="flip-card-front"
-                  style={{ background: `url(${phim.hinhAnh})` }}>
-                  <img
-                    src={phim.hinhAnh}
-                    className="opacity-0 w-full imd-detail-mul"
-                    alt="Avatar"
-                  />
-                  <div className="movie-detail-mul"></div>
-                  <div className="movie-trailer-mul">
-                  <button onClick={showModal}><PlayCircleOutlined className="play-video-mul" /></button>
-                  <Modal title={phim.tenPhim} width="50%" footer={null} visible={state} onOk={handleOk} onCancel={handleCancel}>
+            <div key={index} className="flip-card px-2">
+              <div
+                className="flip-card-front"
+                style={{ background: `url(${phim.hinhAnh})` }}
+              >
+                <img
+                  src={phim.hinhAnh}
+                  className="opacity-0 w-full imd-detail-mul"
+                  alt="Avatar"
+                />
+                <div className="movie-detail-mul"></div>
+                <div className="movie-trailer-mul">
+                  <button onClick={() => setVisible(true)}>
+                    <PlayCircleOutlined className="play-video-mul" />
+                    <Modal
+                      title={phim.tenPhim}
+                      centered
+                      visible={visible}
+                      onCancel={() => setVisible(false)}
+                      width={1000}
+                      footer={null}
+                    >
+                      <p>some contents...</p>
+                      <p>some contents...</p>
+                      <p>some contents...</p>
+                    </Modal>
+                    {/* <Modal  width="50%" footer={null} visible={state} onOk={handleOk} onCancel={handleCancel}>
                     <YoutubePlayer src={phim.trailer} width='100%' height={500} />
-                  </Modal>
-            </div>
+                  </Modal> */}
+                  </button>
                 </div>
-              <div style={{position:'relative'}}>
+              </div>
+              <div style={{ position: "relative" }}>
                 <NavLink className="movie_detail" to={`/detail/${phim.maPhim}`}>
                   <b>Detail</b>
                 </NavLink>
-                </div>
-                {phim.hot ? <button className="btn_hot">HOT</button> : <></>}
               </div>
+              {phim.hot ? <button className="btn_hot">HOT</button> : <></>}
+            </div>
           );
         }):'none'}
       </Slider>

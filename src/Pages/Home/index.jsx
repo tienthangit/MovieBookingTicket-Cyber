@@ -11,7 +11,7 @@ import {
 import MultipleRowSlick from "../../Components/RSlick/MultipleRowSlick";
 import Slider from "react-slick";
 import { getInfoBookingAction } from "../../Store/actions/bookingAction";
-import { CapNhatThongTinNguoiDung } from "../../Store/actions/userActions";
+import { CapNhatThongTinNguoiDung, layThongTinNguoiDungAction } from "../../Store/actions/userActions";
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Home = (props) => {
     dispatch(FetchListBannerActions());
     dispatch(FetchListMovieAction());
     dispatch(getInfoBookingAction());
-    dispatch(CapNhatThongTinNguoiDung())
+    dispatch(layThongTinNguoiDungAction());
   }, [dispatch]);
 
   const bannerList = useSelector((state) => state.movieReducers.bannerList);
