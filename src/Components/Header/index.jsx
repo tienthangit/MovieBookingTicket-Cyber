@@ -1,21 +1,75 @@
 import React, { useEffect } from "react";
 import { Image, Menu, Button } from "antd";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Avatar, Tooltip, Popover } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import "./style.css";
-import { useSelector, useDispatch } from "react-redux";
-import { CapNhatThongTinNguoiDung } from "../../Store/actions/userActions";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 
 export default function Header(props) {
-  const dispatch = useDispatch();
   const history = useHistory();
+  const userLogin = useSelector(state => state.userReducer.userLogin);
 
-  useEffect(() => {
-    dispatch(CapNhatThongTinNguoiDung());
-  }, [dispatch]);
+  // console.log(userLogin);
+  const handleLogout = () => {
+    localStorage.removeItem("USER_LOGIN");
+    localStorage.removeItem("toKen");
+    window.location.reload();
+  };
 
-  const userLogin = useSelector((state) => state.userReducer.userLoginDefault);
-  console.log("user info", userLogin);
+  const text = (
+    <NavLink to="/" onClick={handleLogout} className="mx-4">
+      Đăng xuất
+    </NavLink>
+  );
+
+  const renderUser = () => {
+    if (userLogin?.hoTen) {
+      return (
+        <>
+          <div className="flex justify-end items-center cursor-pointer">
+            <Tooltip placement="bottom" title={text}>
+              <Avatar
+                style={{ backgroundColor: "#80808063", lineHeight: "22px" }}
+                icon={<UserOutlined />}
+              />
+              <span className="ml-3">{userLogin?.hoTen}</span>
+            </Tooltip>
+            <span
+              style={{
+                border: "1px solid #e9e9e9",
+                height: 25,
+                margin: "0 10px",
+              }}></span>
+            <button
+              onClick={() => {
+                history.push("/profile");
+              }}
+              className="tracking-wider hover:text-red-600 transition duration-300">
+              {" "}
+              PROFILE{" "}
+            </button>
+          </div>
+        </>
+      );
+    } 
+      return (
+        <>
+          <Menu.Item key="HOME">
+            <NavLink className="tracking-wider" exact to="/signin">
+              SIGN IN
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key="NEWS">
+            <NavLink className="tracking-wider" exact to="/signup">
+              SIGN UP
+            </NavLink>
+          </Menu.Item>
+        </>
+      );
+  };
+
   return (
     <>
       <Menu mode="horizontal" className="bgColor">
@@ -29,44 +83,17 @@ export default function Header(props) {
         </div>
         <div className="menuItem">
           <Menu.Item key="HOME">
-            <NavLink exact to="/">
+            <NavLink className="tracking-wider" exact to="/">
               HOME
             </NavLink>
           </Menu.Item>
           <Menu.Item key="NEWS">
-            <NavLink exact to="/">
+            <NavLink className="tracking-wider" exact to="/">
               NEWS
             </NavLink>
           </Menu.Item>
         </div>
-        <>
-          {userLogin ? (<>
-            <Menu.Item key="USERNAME">
-              <Button onClick={() => { history.push('/profile') }}>Xin chào {userLogin.hoTen}</Button>
-            </Menu.Item>
-            <Menu.Item key="LOGOUT">
-              <Button onClick={() => { 
-                window.location.reload();
-               }}>Log out</Button>
-            </Menu.Item>
-          </>
-
-
-          ) : (
-            <div className="menuItem">
-              <Menu.Item key="HOME">
-                <NavLink exact to="/signin">
-                  SIGN IN
-                </NavLink>
-              </Menu.Item>
-              <Menu.Item key="NEWS">
-                <NavLink exact to="/signup">
-                  SIGN UP
-                </NavLink>
-              </Menu.Item>
-            </div>
-          )}
-        </>
+        <div className="menuItem">{renderUser()}</div>
       </Menu>
     </>
   );

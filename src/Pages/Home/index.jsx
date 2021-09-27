@@ -13,7 +13,7 @@ import Slider from "react-slick";
 import { getInfoBookingAction } from "../../Store/actions/bookingAction";
 import { CapNhatThongTinNguoiDung, layThongTinNguoiDungAction } from "../../Store/actions/userActions";
 
-const Home = (props) => {
+const Home = props => {
   const dispatch = useDispatch();
 
   //antd
@@ -29,23 +29,33 @@ const Home = (props) => {
 
   //gui dispatch len middleware va call api
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     dispatch(FetchListBannerActions());
     dispatch(FetchListMovieAction());
     dispatch(getInfoBookingAction());
     dispatch(layThongTinNguoiDungAction());
   }, [dispatch]);
 
-  const bannerList = useSelector((state) => state.movieReducers.bannerList);
+  const bannerList = useSelector(state => state.movieReducers.bannerList);
 
-  console.log(props.bannerList);
+  // console.log(bannerList);
 
   return (
     <Fragment>
       <Layout>
         <Slider {...settings}>
-          {bannerList?.map((item) => (
-            <img className="imgBanner" src={item.hinhAnh} alt={item.maBanner} />
+          {bannerList?.map((item, index) => (
+            <div key={index}>
+              <div
+                className="bgBanner"
+                style={{ backgroundImage: `url(${item.hinhAnh})` }}>
+                <img
+                  className="opacity-0 w-full"
+                  src={item.hinhAnh}
+                  alt={item.maBanner}
+                />
+              </div>
+            </div>
           ))}
         </Slider>
 

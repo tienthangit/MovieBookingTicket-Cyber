@@ -1,9 +1,8 @@
-import React from 'react'
-import Header from '../../Components/Header'
-import { Col, Typography } from 'antd';
-import { useSelector } from 'react-redux';
-import './style.css'
-
+import React, { useEffect } from "react";
+import Header from "../../Components/Header";
+import { Col, Typography } from "antd";
+import { useSelector } from "react-redux";
+import "./style.css";
 
 function Layout(props) {
   const { Title } = Typography;
@@ -12,12 +11,10 @@ function Layout(props) {
   return (
     <div className="template">
       <Header />
-      <div className="body">
-        {props.children}
-      </div>
+      <div className="body">{props.children}</div>
       <div className="footer">
         <div className="containerLayout">
-          <div className='row'>
+          <div className="row">
             <Col span={8}>
               <Title level={4}>Tix</Title>
               <div className="tix-col">
@@ -40,23 +37,39 @@ function Layout(props) {
             <Col span={4}>
               <Title level={4}>MOBILE APP</Title>
               <div className="mobile-col">
-                <img src="https://tix.vn/app/assets/img/icons/apple-logo.png" alt="logo" style={{ width: 30, marginRight:20 }} />
-                <img src="https://tix.vn/app/assets/img/icons/android-logo.png" alt="logo" style={{ width: 30, marginRight:20 }} />
+                <img
+                  src="https://tix.vn/app/assets/img/icons/apple-logo.png"
+                  alt="logo"
+                  style={{ width: 30, marginRight: 20 }}
+                />
+                <img
+                  src="https://tix.vn/app/assets/img/icons/android-logo.png"
+                  alt="logo"
+                  style={{ width: 30, marginRight: 20 }}
+                />
               </div>
             </Col>
             <Col span={4}>
               <Title level={4}>SOCIAL</Title>
               <div className="social-col">
-                <img src="https://tix.vn/app/assets/img/icons/facebook-logo.png" alt="logo" style={{ width: 30, marginRight:20 }} />
-                <img src="https://tix.vn/app/assets/img/icons/zalo-logo.png" alt="logo" style={{ width: 30, marginRight:20 }} />
+                <img
+                  src="https://tix.vn/app/assets/img/icons/facebook-logo.png"
+                  alt="logo"
+                  style={{ width: 30, marginRight: 20 }}
+                />
+                <img
+                  src="https://tix.vn/app/assets/img/icons/zalo-logo.png"
+                  alt="logo"
+                  style={{ width: 30, marginRight: 20 }}
+                />
               </div>
             </Col>
           </div>
         </div>
-        <p>&copy; {(new Date().getFullYear())} All rights reserved</p>
+        <p>&copy; {new Date().getFullYear()} All rights reserved</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
