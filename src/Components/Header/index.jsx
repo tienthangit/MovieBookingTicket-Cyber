@@ -86,10 +86,18 @@ export default function Header(props) {
             <NavLink className="tracking-wider" exact to="/">
               HOME
             </NavLink>
+          </Menu.Item><Menu.Item key="Cinema">
+            <NavLink className="tracking-wider" exact to="/">
+              CINEMA
+            </NavLink>
           </Menu.Item>
           <Menu.Item key="NEWS">
-            <NavLink className="tracking-wider" exact to="/">
+            <NavLink className="tracking-wider" exact to="/news">
               NEWS
+            </NavLink>
+          </Menu.Item><Menu.Item key="App">
+            <NavLink className="tracking-wider" exact to="/">
+              APP
             </NavLink>
           </Menu.Item>
         </div>

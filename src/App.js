@@ -8,6 +8,7 @@ import BookingTicket from "./Pages/BookingTicket";
 import BookingTemplate from "./Templates/bookingTemplate/bookingTemplate";
 import Loading from "./Components/Loading";
 import Profile from "./Pages/Profile";
+import News from "./Pages/News";
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <UserTemplate path="/profile" Component={Profile} />
         <BookingTemplate path="/booking/:id" Component={BookingTicket}/>
         <Route exact path="/" component={Home}/>
+        <Route exact path="/news" component={News}/>
         <Route exact path="/detail/:id" component={Detail}/>
       </Switch>
     </BrowserRouter>
