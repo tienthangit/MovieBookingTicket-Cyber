@@ -4,6 +4,7 @@ import "./style.css";
 import { Typography } from "antd";
 import CinemaListInfo from "../../Components/Cinema/cinemaListInfo";
 import Layout from "../../HOC/Layout";
+import News from "../News/index"
 import {
   FetchListBannerActions,
   FetchListMovieAction,
@@ -11,7 +12,7 @@ import {
 import MultipleRowSlick from "../../Components/RSlick/MultipleRowSlick";
 import Slider from "react-slick";
 import { getInfoBookingAction } from "../../Store/actions/bookingAction";
-import { CapNhatThongTinNguoiDung, layThongTinNguoiDungAction } from "../../Store/actions/userActions";
+import { layThongTinNguoiDungAction } from "../../Store/actions/userActions";
 
 const Home = props => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Home = props => {
   //antd
   const { Title } = Typography;
   const settings = {
-    dots: true,
+    dots: false,
     autoplay: true,
     infinite: true,
     speed: 500,
@@ -69,6 +70,11 @@ const Home = props => {
         <div className="cinemaListInfo">
           <CinemaListInfo />
         </div>
+
+        <div className="News" style={{width:'75%', margin:'auto'}}>
+          <News />
+        </div>
+
       </Layout>
     </Fragment>
   );

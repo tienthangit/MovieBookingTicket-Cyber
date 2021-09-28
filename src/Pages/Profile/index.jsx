@@ -15,7 +15,7 @@ import {
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import logoSignIn from "../../assets/logoSignIn.png";
-import { useFormik } from "formik";
+import './style.css'
 
 const { TabPane } = Tabs;
 const { Text } = Typography;
@@ -44,7 +44,7 @@ export default function Profile(props) {
   const renderInfoUser = () => {
     return thongTinNguoiDung.thongTinDatVe?.map((info) => {
       return (
-        <div key={info.maVe} className="max-w-sm w-full lg:max-w-full lg:flex">
+        <div key={info.maVe} className="max-w-sm w-full lg:max-w-full lg:flex mb-3">
           <div
             className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             style={{ backgroundImage: `url(${info.hinhAnh})` }}
@@ -93,7 +93,7 @@ export default function Profile(props) {
   };
 
   return (
-    <Tabs defaultActiveKey="1">
+    <Tabs defaultActiveKey="1" className="profileTabs">
       <TabPane tab="Thông tin cá nhân" key="1">
         <form onSubmit={handleSubmit} className="signIn-form sm:container rounded-lg" >
           <NavLink to="/"><img className="logoLogin" src={logoSignIn} alt="logo" /></NavLink>
@@ -134,7 +134,7 @@ export default function Profile(props) {
         </form>
       </TabPane>
       <TabPane tab="Lịch sử đặt vé " key="2">
-        <div className="grid grid-rows-3 grid-flow-col gap-4">
+        <div className="grid grid-rows-3 grid-flow-col gap-4" style={{marginBottom:10}}>
           <div>{renderInfoUser()}</div>
         </div>
       </TabPane>
