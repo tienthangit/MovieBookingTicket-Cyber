@@ -50,7 +50,7 @@ function ResultBooking() {
     <section className="mx-auto max-w-6xl py-12">
       <div className="flex flex-col md:flex-row justify-center items-center flex-wrap">
         <div className="transition-all ease-in-out duration-1000 flex flex-col justify-center mr-0 md:mr-2">
-          <div className="mb-4">
+          <div className="mb-4 text-center">
             <h3 className="text-xl font-medium text-black text-center">
               Lịch sử đặt vé khách hàng
             </h3>
