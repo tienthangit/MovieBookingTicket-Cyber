@@ -4,6 +4,7 @@ import "./style.css";
 import { Typography } from "antd";
 import CinemaListInfo from "../../Components/Cinema/cinemaListInfo";
 import Layout from "../../HOC/Layout";
+import News from "../News/index"
 import {
   FetchListBannerActions,
   FetchListMovieAction,
@@ -11,7 +12,7 @@ import {
 import MultipleRowSlick from "../../Components/RSlick/MultipleRowSlick";
 import Slider from "react-slick";
 import { getInfoBookingAction } from "../../Store/actions/bookingAction";
-import { CapNhatThongTinNguoiDung } from "../../Store/actions/userActions";
+import { layThongTinNguoiDungAction } from "../../Store/actions/userActions";
 
 const Home = props => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Home = props => {
   //antd
   const { Title } = Typography;
   const settings = {
-    dots: true,
+    dots: false,
     autoplay: true,
     infinite: true,
     speed: 500,
@@ -33,7 +34,7 @@ const Home = props => {
     dispatch(FetchListBannerActions());
     dispatch(FetchListMovieAction());
     dispatch(getInfoBookingAction());
-    dispatch(CapNhatThongTinNguoiDung())
+    dispatch(layThongTinNguoiDungAction());
   }, [dispatch]);
 
   const bannerList = useSelector(state => state.movieReducers.bannerList);
@@ -60,7 +61,7 @@ const Home = props => {
         </Slider>
 
         {/* movie selection */}
-        <Title>Movie Selection</Title>
+        <Title className="showtime">Movie Selection</Title>
         <div className="container mx-auto">
           <MultipleRowSlick />
         </div>
@@ -69,6 +70,11 @@ const Home = props => {
         <div className="cinemaListInfo">
           <CinemaListInfo />
         </div>
+
+        <div className="News" style={{width:'75%', margin:'auto'}}>
+          <News />
+        </div>
+
       </Layout>
     </Fragment>
   );
