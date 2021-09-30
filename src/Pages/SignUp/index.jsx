@@ -10,7 +10,7 @@ import {
   PhoneOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
-import logoSignIn from "../../assets/logoSignIn.png";
+import logoSignIn from "../../assets/img/logoSignIn.png";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SignUpAction } from "../../Store/actions/userActions";

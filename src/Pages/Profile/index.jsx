@@ -14,7 +14,7 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-import logoSignIn from "../../assets/logoSignIn.png";
+import logoSignIn from "../../assets/img/logoSignIn.png";
 import './style.css'
 
 const { TabPane } = Tabs;

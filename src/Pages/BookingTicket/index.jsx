@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import srceen from "../../assets/screen.png";
+import srceen from "../../assets/img/screen.png";
 import { Tag } from "antd";
 import { CloseOutlined, UserOutlined } from "@ant-design/icons";
 import "./style.css";

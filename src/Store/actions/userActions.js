@@ -75,7 +75,7 @@ export const layThongTinNguoiDungAction = () => {
           //   thongTinNguoiDung: result.data.content,
           // }
         );
-        console.log("result", result);
+        // console.log("result", result);
       }
     } catch (err)
     {

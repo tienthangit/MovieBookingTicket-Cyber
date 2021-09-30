@@ -29,8 +29,8 @@ function Layout(props) {
             <Col span={8}>
               <Title level={4} style={{fontWeight: 300}}>Đối tác</Title>
               <div className="logo-col">
-                {cinema ? cinema?.map((item) => (
-                  <img key={item.maHeThongRap} src={item.logo} alt={item.maHeThongRap} style={{ width: 30, marginRight: 20 }} />
+                {cinema ? cinema?.map((item,index) => (
+                  <img key={index} key={item.maHeThongRap} src={item.logo} alt={item.maHeThongRap} style={{ width: 30, marginRight: 20 }} />
                 )) : 'không tồn tại'}
               </div>
               <div className="logo-col" style={{marginTop:20}}>
