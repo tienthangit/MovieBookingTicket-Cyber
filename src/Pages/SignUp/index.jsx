@@ -76,7 +76,7 @@ function SignUp(props) {
         <NavLink to="/">
           <img className="logoLogin" src={logoSignIn} alt="logo" />
         </NavLink>
-        <NavLink to="/" exact className="btnClose text-center">
+        <NavLink to="/" exact className="btnClose text-center text-white">
           <CloseOutlined />
         </NavLink>
         <div className="mb-2">

@@ -94,8 +94,9 @@ p {
 
 .star-rating {
   position: absolute;
-  bottom: 5%;
-  left: 10%;
+  bottom: -5%;
+  left: 0%;
+  transform: translateX(25%);
 }
 
 .lichChieu {
@@ -404,7 +405,7 @@ p {
 }
 
 .c100.big {
-  font-size: 240px;
+  font-size: 200px;
 }
 
 .c100.small {

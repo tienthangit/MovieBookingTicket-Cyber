@@ -34,7 +34,7 @@ export default function Header(props) {
                 style={{ backgroundColor: "#80808063", lineHeight: "22px" }}
                 icon={<UserOutlined />}
               />
-              <span className="ml-3">{userLogin?.hoTen}</span>
+              <span className="textHeader ml-3 opacity-50">{userLogin?.hoTen}</span>
             </Tooltip>
             <span
               style={{
@@ -46,9 +46,9 @@ export default function Header(props) {
               onClick={() => {
                 history.push("/profile");
               }}
-              className="tracking-wider hover:text-red-600 transition duration-300">
+              className="textHeader hover:text-red-600 transition duration-300 opacity-50">
               {" "}
-              PROFILE{" "}
+              Thông Tin{" "}
             </button>
           </div>
         </>
@@ -57,13 +57,13 @@ export default function Header(props) {
       return (
         <>
           <Menu.Item key="HOME">
-            <NavLink className="tracking-wider" exact to="/signin">
-              SIGN IN
+            <NavLink className="textHeader" exact to="/signin">
+              Đăng Nhập
             </NavLink>
           </Menu.Item>
           <Menu.Item key="NEWS">
-            <NavLink className="tracking-wider" exact to="/signup">
-              SIGN UP
+            <NavLink className="textHeader" exact to="/signup">
+              Đăng Ký
             </NavLink>
           </Menu.Item>
         </>
@@ -72,33 +72,36 @@ export default function Header(props) {
 
   return (
     <>
-      <Menu mode="horizontal" className="bgColor">
+      <Menu mode="horizontal" className="bgColor py-2">
         <div className="menuItem">
           <Menu.Item key="logo">
-            <Image
-              className="logo"
-              src="https://tix.vn/app/assets/img/icons/web-logo.png"
-            />
+            <div>
+              <img
+                className="logo"
+                src="https://tix.vn/app/assets/img/icons/web-logo.png"
+                alt="logo"
+              />
+            </div>
           </Menu.Item>
         </div>
         <div className="menuItem">
           <Menu.Item key="HOME">
-            <NavLink className="tracking-wider" exact to="/">
-              HOME
-            </NavLink>
-          </Menu.Item><Menu.Item key="Cinema">
-            <NavLink className="tracking-wider" exact to="/">
-              CINEMA
-            </NavLink>
+            <a className="textHeader" href="#lichChieu">
+              Lịch Chiếu
+            </a>
+          </Menu.Item><Menu.Item key="#cumRap">
+            <a className="textHeader" href="#">
+              Cụm Rạp
+            </a>
           </Menu.Item>
           <Menu.Item key="NEWS">
-            <NavLink className="tracking-wider" exact to="/news">
-              NEWS
-            </NavLink>
+            <a className="textHeader" href="#tinTuc">
+              Tin Tức
+            </a>
           </Menu.Item><Menu.Item key="App">
-            <NavLink className="tracking-wider" exact to="/">
-              APP
-            </NavLink>
+            <a className="textHeader" href="#ungDung">
+              Ứng Dụng
+            </a>
           </Menu.Item>
         </div>
         <div className="menuItem">{renderUser()}</div>

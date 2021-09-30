@@ -1,9 +1,48 @@
-.tabNews{
-    box-shadow: none !important;
+.tabNews {
+  box-shadow: none !important;
 }
 .tabNews .ant-tabs-nav-wrap {
-    margin-left: 32%;
+  margin-left: 32%;
 }
-.tabItems{
-    font-size: 20px;
+.tabItems {
+  font-size: 1.25rem;
+}
+.bgNews {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.bgNews-2 {
+  height: 13.125rem !important;
+}
+
+.ant-card-meta-description {
+  height: 2.5rem;
+}
+
+.divNews:hover span {
+  color: red;
+  transition-duration: 0.7s;
+}
+.ant-card-body {
+  padding: 1.25rem 0.625rem 1.25rem 0.625rem !important;
+}
+.spTitle {
+  font-size: 20px;
+  line-height: 24px;
+  height: 24px;
+  font-family: "SF Medium";
+  transition: all 0.2s;
+  -moz-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+}
+
+.ant-tabs-tab-btn span.spTitle:hover {
+  font-size: 24px;
+  transform: scale(300%);
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn span.spTitle {
+  font-size: 24px;
+  transform: scale(300%);
 }

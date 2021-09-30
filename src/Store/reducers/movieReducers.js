@@ -10,7 +10,7 @@ const stateDefault = {
   arrFilm: [],
   arrFilmDefault: [],
   dangChieu: true,
-  sapChieu: true,
+  sapChieu: false,
 };
 
 export const movieReducers = (state = stateDefault, { type, payload }) => {
@@ -26,11 +26,13 @@ export const movieReducers = (state = stateDefault, { type, payload }) => {
 
     case SET_FILM_DANG_CHIEU:
       state.dangChieu = !state.dangChieu;
+      state.sapChieu = !state.sapChieu
       state.arrFilm = state.arrFilmDefault.filter(film => film.dangChieu === state.dangChieu);
       return { ...state };
 
     case SET_FILM_SAP_CHIEU:
       state.sapChieu = !state.sapChieu;
+      state.dangChieu = !state.dangChieu
       state.arrFilm = state.arrFilmDefault.filter(film => film.sapChieu === state.sapChieu);
       return { ...state };
 

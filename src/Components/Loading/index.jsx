@@ -10,7 +10,7 @@ function Loading() {
       {isLoading ? (
         <div
           className="flex items-center justify-center h-screen w-screen"
-          style={{ position: "fixed", backgroundColor: "rgb(0 0 0 / 25%)" }}>
+          style={{ position: "fixed", backgroundColor: "rgb(0 0 0 / 25%)", zIndex: '100' }}>
           <img src={Loadingpng} alt="loading"></img>
         </div>
       ) : (

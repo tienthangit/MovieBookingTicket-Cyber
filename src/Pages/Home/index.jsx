@@ -9,6 +9,7 @@ import {
   FetchListBannerActions,
   FetchListMovieAction,
 } from "../../Store/actions/movieActions";
+
 import MultipleRowSlick from "../../Components/RSlick/MultipleRowSlick";
 import Slider from "react-slick";
 import { getInfoBookingAction } from "../../Store/actions/bookingAction";
@@ -61,7 +62,7 @@ const Home = props => {
         </Slider>
 
         {/* movie selection */}
-        <Title className="showtime">Movie Selection</Title>
+        {/* <Title className="showtime">Danh Sách Phim</Title> */}
         <div className="container mx-auto">
           <MultipleRowSlick />
         </div>
@@ -71,7 +72,7 @@ const Home = props => {
           <CinemaListInfo />
         </div>
 
-        <div className="News" style={{width:'75%', margin:'auto'}}>
+        <div className="News" style={{ width: '75%', margin: 'auto' }}>
           <News />
         </div>
 

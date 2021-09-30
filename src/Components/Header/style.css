@@ -1,5 +1,6 @@
 .bgColor{
     background-color: white;
+    opacity: 0.9;
     color: black;
     display:flex;
     justify-content:space-between;
@@ -22,4 +23,17 @@
 }
 .ant-tooltip-inner{
     background-color: gray !important;
+}
+.textHeader{
+    font-size: 14px !important;
+    font-family: 'SF Regular' !important;
+}
+
+/* .ant-menu-overflow-item.ant-menu-item.ant-menu-item-active.ant-menu-item-selected.ant-menu-item-only-child .ant-menu-title-content a {
+    color: red !important;
+} */
+
+
+.ant-menu-item-selected a{
+    color: black !important;
 }
