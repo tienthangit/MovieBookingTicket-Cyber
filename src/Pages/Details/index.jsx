@@ -18,7 +18,7 @@ export default function Detail() {
   const params = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     dispatch(FetchMovieDetailsAction(params.id))
   }, [dispatch]);
   const filmDetail = useSelector((state) => state.quanLyRapReducers.movieDetail);
@@ -44,8 +44,9 @@ export default function Detail() {
         <div className="row-detail">
           <Col className="img_detail" span={4}>
             <span className="title-maPhim">{filmDetail.maPhim}</span>
-            <img src={filmDetail.hinhAnh} alt={filmDetail.tenPhim} style={{ height: 300, width: "100%", position:'relative' }} />
-            <div className="movie__detail"></div>
+            <div className="bgNews" style={{ backgroundImage: `url(${filmDetail.hinhAnh})` }}>
+              <img className="opacity-0 w-full" src={filmDetail.hinhAnh} alt={filmDetail.hinhAnh} />
+            </div>
             <div className="movie_trailer">
               <button onClick={showModal}><PlayCircleOutlined className="play-video" /></button>
               <Modal title={filmDetail.tenPhim} width="50%" footer={null} visible={state} onOk={handleOk} onCancel={handleCancel}>
@@ -59,7 +60,7 @@ export default function Detail() {
             <Title level={3} className="tenPhim-detail">{filmDetail.tenPhim}</Title>
             <p>Nội dung: {filmDetail.moTa}</p>
           </Col>
-          <Col span={8}>
+          <Col span={8} className="flex justity-center">
             <div className={`c100 p${filmDetail.danhGia} big`}>
               <span>{filmDetail.danhGia}%</span>
               <div className="slice">
@@ -67,49 +68,53 @@ export default function Detail() {
                 <div className="fill" />
               </div>
             </div>
-            <br/>
+            <br />
             <div className="star-rating"><Rate allowHalf value={filmDetail.danhGia / 2} /></div>
           </Col>
         </div>
 
-          <Title style={{color: '#d65306'}}>Lịch chiếu</Title>
-            <div className="lichChieu">
-            <Tabs tabPosition={'left'}>
-              {filmDetail ? filmDetail.heThongRapChieu?.map((heThongRapChieu, index) => {
-                return <TabPane tab={<div style={{ display:'flex'}}>
-                  <img src={heThongRapChieu.logo} alt={heThongRapChieu.maPhim} style={{ width: 70 }} /><p className='tenHeThongRap'>{heThongRapChieu.tenHeThongRap}</p>
-                </div>} key={index}>
-                  <div className="cumRapChieu">
-                    {heThongRapChieu.cumRapChieu?.map((cumRapChieu, index) => {
-                      return <div key={index}>
-                        <div className='cumRapDetail'>
-                          <img src={cumRapChieu.hinhAnh} alt={cumRapChieu.temCumRap} style={{ width: 150,height: 100 }} />
-                          <div className='cumRapInfo'>
+        <Title style={{ color: '#d65306' }}>Lịch chiếu</Title>
+        <div className="lichChieu">
+          <Tabs tabPosition={'left'}>
+            {filmDetail ? filmDetail.heThongRapChieu?.map((heThongRapChieu, index) => {
+              return <TabPane tab={
+                <div style={{ display: 'flex', alignItems: "center", paddingRight: '3rem' }}>
+                  <img style={{ width: 60 }} src={heThongRapChieu.logo} alt={heThongRapChieu.logo} />
+                  <p className='text-lg ml-3'>{heThongRapChieu.tenHeThongRap}</p>
+                </div>
+              }
+                key={index}>
+                <div className="cumRapChieu">
+                  {heThongRapChieu.cumRapChieu?.map((cumRapChieu, index) => {
+                    return <div key={index}>
+                      <div className='cumRapDetail'>
+                        <img className="" src={cumRapChieu.hinhAnh} alt={cumRapChieu.hinhAnh} style={{ width: '30%'}} />
+                        <div className='cumRapInfo'>
                           <Title level={5}>{cumRapChieu.tenCumRap}</Title>
-                            <p>{cumRapChieu.diaChi}</p>
-                            <div className="grid grid-cols-4">
-                              {cumRapChieu.lichChieuPhim?.slice(0, 10).map((lichChieuPhim, index) => {
-                                return (
-                                  <NavLink
-                                    to={`/booking/${lichChieuPhim.maLichChieu}`}
-                                    className="col-span-1 gioChieu"
-                                    key={index}>
-                                    {moment(
-                                      lichChieuPhim.ngayChieuGioChieu
-                                    ).format("hh:mm A")}
-                                  </NavLink>
-                                );
-                              })}
-                            </div>
+                          <p>{cumRapChieu.diaChi}</p>
+                          <div className="grid grid-flow-col grid-cols-3 grid-rows-3">
+                            {cumRapChieu.lichChieuPhim?.slice(0, 9).map((lichChieuPhim, index) => {
+                              return (
+                                <NavLink
+                                  to={`/booking/${lichChieuPhim.maLichChieu}`}
+                                  className="col-span-1 gioChieu"
+                                  key={index}>
+                                  {moment(
+                                    lichChieuPhim.ngayChieuGioChieu
+                                  ).format("hh:mm A")}
+                                </NavLink>
+                              );
+                            })}
                           </div>
                         </div>
                       </div>
-                    })}
-                  </div>
-                </TabPane>
-              }) : 'none'}
-            </Tabs>
-            </div>
+                    </div>
+                  })}
+                </div>
+              </TabPane>
+            }) : 'none'}
+          </Tabs>
+        </div>
       </CustomCard>
     </div> : "detail"}
   </Layout>;

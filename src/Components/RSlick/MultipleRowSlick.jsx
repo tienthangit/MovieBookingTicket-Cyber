@@ -36,9 +36,8 @@ function SamplePrevArrow(props) {
 
 export default function MultipleRowSlick(props) {
   const dispatch = useDispatch();
-  const arrFilm = useSelector((state) => state.movieReducers.arrFilm);
-  const { dangChieu, sapChieu } = useSelector(
-    (state) => state.movieReducers.arrFilm
+  const { arrFilm, dangChieu, sapChieu } = useSelector(
+    (state) => state.movieReducers
   );
 
   const settings = {
@@ -52,38 +51,46 @@ export default function MultipleRowSlick(props) {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
-  console.log("arrFilm", arrFilm);
-  let phimDangChieu = dangChieu === true ? "active_Film" : "none_active_Film";
-  let phimSapChieu = sapChieu === true ? "active_Film" : "none_active_Film";
+  // console.log("arrFilm", arrFilm);
+
 
   const [visible, setVisible] = useState(false);
-  const [curPhim,setCurPhim] = useState(null);
+  const [curPhim, setCurPhim] = useState(null);
+
+  let phimDangChieu = dangChieu === true ? "active_Film" : "none_active_Film"
+  let phimSapChieu = sapChieu === true ? "active_Film" : "none_active_Film"
+
+  // console.log('phimDangChieu', phimDangChieu);
+  // console.log('phimSapChieu', phimSapChieu);
 
   return (
-    <div>
-      <Button
-        className={`${styleSlick[phimDangChieu]}`}
-        style={{ marginRight: 10, marginBottom: 10 }}
-        type="primary"
-        danger
-        onClick={() => {
-          const action = { type: SET_FILM_DANG_CHIEU };
-          dispatch(action);
-        }}
-      >
-        Phim Đang chiếu
-      </Button>
-      <Button
-        className={`${styleSlick[phimSapChieu]}`}
-        type="primary"
-        danger
-        onClick={() => {
-          const action = { type: SET_FILM_SAP_CHIEU };
-          dispatch(action);
-        }}
-      >
-        Phim Sắp chiếu
-      </Button>
+
+    <div id="lichChieu">
+      <div className="dvShowTimes flex items-center justify-center my-9">
+        <span
+          className={`spTitle mr-10 cursor-pointer font-semibold ${phimDangChieu}`}
+          type="primary"
+          danger
+          onClick={() => {
+            const action = { type: SET_FILM_DANG_CHIEU };
+            dispatch(action);
+          }}
+        >
+          Đang Chiếu
+        </span>
+        <span
+          className={`spTitle ml-10 cursor-pointer font-semibold ${phimSapChieu}`}
+          type="primary"
+          danger
+          onClick={() => {
+            const action = { type: SET_FILM_SAP_CHIEU };
+            dispatch(action);
+          }}
+        >
+          Sắp Chiếu
+        </span>
+      </div>
+
       <Slider {...settings}>
         {arrFilm ? arrFilm.slice(0, 20).map((phim, index) => {
           return (
@@ -93,13 +100,13 @@ export default function MultipleRowSlick(props) {
                 <div className="movie-detail-mul"></div>
                 <div className="movie-trailer-mul">
                   <button onClick={() => {
-                    setVisible(true) 
+                    setVisible(true)
                     setCurPhim(phim)
                   }}>
                     <PlayCircleOutlined className="play-video-mul" />
                   </button>
                   {curPhim && <Modal title={curPhim.tenPhim} centered visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)} width={700}
-                  footer={null}>
+                    footer={null}>
                     <iframe src={curPhim.trailer} height="500" width="100%" allow="autoplay" frameBorder="0"></iframe>
                   </Modal>}
                 </div>

@@ -1,16 +1,63 @@
-.style{
-    text-align:left;
+.style {
+  text-align: left;
 }
-.lstCumRap-title{
-    margin-left: 10px;
+.lstCumRap-title {
+  margin-left: 10px;
 }
-.ant-tabs-left > .ant-tabs-content-holder > .ant-tabs-content > .ant-tabs-tabpane, .ant-tabs-left > div > .ant-tabs-content-holder > .ant-tabs-content > .ant-tabs-tabpane {
-    padding-left:0;
+.ant-tabs-left
+  > .ant-tabs-content-holder
+  > .ant-tabs-content
+  > .ant-tabs-tabpane,
+.ant-tabs-left
+  > div
+  > .ant-tabs-content-holder
+  > .ant-tabs-content
+  > .ant-tabs-tabpane {
+  padding-left: 0;
 }
-.dsPhim{
-    margin-left: 15px;
+.dsPhim {
+  margin-left: 15px;
 }
-.ant-tabs-left > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-right > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-right > div > .ant-tabs-nav .ant-tabs-tab {
-    padding: 5px 5px;
-    text-align: center;
+.ant-tabs-left > .ant-tabs-nav .ant-tabs-tab,
+.ant-tabs-right > .ant-tabs-nav .ant-tabs-tab,
+.ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab,
+.ant-tabs-right > div > .ant-tabs-nav .ant-tabs-tab {
+  padding: 5px 5px;
+  text-align: center;
+}
+
+/**
+    dè css rạp
+*/
+.ant-tabs-tab .ant-tabs-tab-btn .imgRap:hover {
+  opacity: 1 !important;
+  transition-duration: 0.3s;
+}
+
+/**
+    dè css cụm rạp
+*/
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn img {
+  opacity: 1 !important;
+  transition-duration: 0.3s;
+}
+
+.ant-tabs-tab .ant-tabs-tab-btn div:hover {
+  opacity: 1 !important;
+  transition-duration: 0.3s;
+}
+
+/** đè css active rạp
+*/
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn div {
+  opacity: 1 !important;
+  transition-duration: 0.3s;
+}
+
+.divTab {
+  display: flex;
+  padding-bottom: 10px;
+  width: 650px;
+  opacity: 0.6;
+  border-bottom: 1px solid #80808070;
 }

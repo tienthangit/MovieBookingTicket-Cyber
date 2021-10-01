@@ -8,8 +8,11 @@ export const getDetailRoomTicketAction = (maLichChieu) => {
     return async (dispatch) => {
         try
         {
+            dispatch(createActions(ON_LOADING))
             const result = await bookingServices.getRoomTicket(maLichChieu);
             dispatch(createActions(GET_DETAIL_ROOM_TICKET, result.data.content))
+
+            dispatch(createActions(HIDE_LOADING))
         } catch (err)
         {
             console.log(err?.response);
@@ -46,6 +49,7 @@ export const bookingTicketAction = (thongTinDatVe) => {
     }
 }
 
+// lấy kết quả đặt vé
 export const getInfoBookingAction = () => {
     return async (dispatch) => {
         try
@@ -60,12 +64,13 @@ export const getInfoBookingAction = () => {
     }
 }
 
+
+// đặt ghế
 export const bookingSeats = (ghe, maLichChieu) => {
     return async (dispatch, getState) => {
 
         try
         {
-
             await dispatch(createActions(SET_GHE_DANG_DAT, ghe))
             // lấy taiKhoan từ userReducer về
             // let taiKhoan = getState().userReducer.userLogin.taiKhoan
