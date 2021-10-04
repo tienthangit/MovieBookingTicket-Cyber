@@ -52,7 +52,7 @@ const Home = props => {
                 className="bgBanner"
                 style={{ backgroundImage: `url(${item.hinhAnh})` }}>
                 <img
-                  className="opacity-0 w-full"
+                  className="maBanner opacity-0 w-full"
                   src={item.hinhAnh}
                   alt={item.maBanner}
                 />

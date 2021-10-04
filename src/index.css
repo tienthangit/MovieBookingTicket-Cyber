@@ -23,3 +23,11 @@ code {
     monospace;
 }
 
+/*responsive navbar*/
+@media screen and (max-width: 730px) {
+  .bgBanner .maBanner{
+    height: 300px !important;
+    width: auto;
+  }
+}
+

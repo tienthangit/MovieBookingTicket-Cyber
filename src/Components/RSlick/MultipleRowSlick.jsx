@@ -11,6 +11,7 @@ import styleSlick from "./MultipleRowSlick.module.css";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import "./style.css";
 import { Modal, Button } from 'antd';
+import { Player } from "video-react";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -51,17 +52,27 @@ export default function MultipleRowSlick(props) {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
-  // console.log("arrFilm", arrFilm);
 
 
-  const [visible, setVisible] = useState(false);
+  const [state, setState] = useState({
+    visible: false
+  });
   const [curPhim, setCurPhim] = useState(null);
+
+  const showModal = () => {
+    setState({
+      visible: true
+    });
+  };
+
+  const hideModal = () => {
+    setState({
+      visible: false
+    });
+  };
 
   let phimDangChieu = dangChieu === true ? "active_Film" : "none_active_Film"
   let phimSapChieu = sapChieu === true ? "active_Film" : "none_active_Film"
-
-  // console.log('phimDangChieu', phimDangChieu);
-  // console.log('phimSapChieu', phimSapChieu);
 
   return (
 
@@ -100,14 +111,14 @@ export default function MultipleRowSlick(props) {
                 <div className="movie-detail-mul"></div>
                 <div className="movie-trailer-mul">
                   <button onClick={() => {
-                    setVisible(true)
+                    showModal()
                     setCurPhim(phim)
                   }}>
                     <PlayCircleOutlined className="play-video-mul" />
                   </button>
-                  {curPhim && <Modal title={curPhim.tenPhim} centered visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)} width={700}
-                    footer={null}>
-                    <iframe src={curPhim.trailer} height="500" width="100%" allow="autoplay" frameBorder="0"></iframe>
+                  {curPhim && <Modal title={curPhim.tenPhim} visible={state.visible} footer={null} onCancel={hideModal}>
+                    <iframe width="100%" height="300" src={curPhim.trailer} allow="autoplay" frameBorder="0">
+                    </iframe>
                   </Modal>}
                 </div>
               </div>

@@ -9,6 +9,7 @@ import BookingTemplate from "./Templates/bookingTemplate/bookingTemplate";
 import Loading from "./Components/Loading";
 import Profile from "./Pages/Profile";
 import News from "./Pages/News";
+import "./index.css"
 
 
 
