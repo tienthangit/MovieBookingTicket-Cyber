@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Redirect, Route, NavLink } from "react-router-dom";
 import TicketBooking from "./ticketBooking";
 import { useDispatch, useSelector } from "react-redux"
-import { getDetailRoomTicketAction } from "../../Store/actions/bookingAction";
+// import { getDetailRoomTicketAction } from "../../Store/actions/bookingAction";
 import { Tabs, Tooltip, Avatar } from 'antd';
 import { UserOutlined, DollarOutlined, TagsOutlined, HomeOutlined } from "@ant-design/icons";
 import ResultBooking from "../../Pages/ResultBooking";
@@ -57,7 +57,6 @@ function BookingTemplate(props) {
     dispatch(createActions(CHUYEN_TAB_ACTIVE, key))
   }
 
-
   if (!localStorage.getItem("USER_LOGIN"))
   {
     return <Redirect to="/signin" />;
@@ -72,14 +71,15 @@ function BookingTemplate(props) {
             <Fragment>
               <div className="grid grid-cols-4 h-full">
                 <div className="col-span-3">
-                  <Tabs defaultActiveKey='1' activeKey={tabActive} onChange={onChangeTab} tabBarExtraContent={operations} className="">
+                  <Tabs defaultActiveKey='1' activeKey={tabActive} onChange={onChangeTab} tabBarExtraContent={operations} >
                     <TabPane tab={<span> <DollarOutlined style={{ fontSize: 25, margin: '10px 10px 10px 0' }} /> CHỌN GHẾ & THANH TOÁN </span>} key="1">
                       <Component {...propsRoute} />
                     </TabPane>
                     <TabPane tab={<span> <TagsOutlined style={{ fontSize: 25, margin: '10px 10px 10px 0' }} /> KẾT QUẢ ĐẶT VÉ </span>} key="2">
                       <ResultBooking {...propsRoute} />
                     </TabPane>
-                    <TabPane tab={
+                    <TabPane
+                      tab={
                       <NavLink to='/'>  <HomeOutlined style={{ fontSize: 25, margin: '10px 10px 10px 0' }} />TRANG CHỦ </NavLink>} key="3">
                     </TabPane>
                   </Tabs>

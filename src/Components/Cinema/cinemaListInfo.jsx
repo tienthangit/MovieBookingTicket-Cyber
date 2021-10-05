@@ -22,11 +22,9 @@ export default function CinemaListInfo(props) {
 
       <Tabs tabPosition={'left'}>
         {cinemaList ? cinemaList.map((item, index) => {
-          return <TabPane tab={
-
+          return <TabPane key={index} tab={
             <img className="imgRap" src={item.logo} alt={item.tenHeThongRap} style={{ width: 60, paddingRight: 15, opacity: 0.6 }} />
-
-          } key={index}>
+          } >
             <Tabs tabPosition={'left'}>
               {item.lstCumRap?.slice(0, 10).map((lstCumRap, index) => {
                 return <TabPane key={index} tab={

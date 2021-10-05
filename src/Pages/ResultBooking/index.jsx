@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Tag } from "antd";
 import { getInfoBookingAction } from "../../Store/actions/bookingAction";
+import iconResult from '../../assets/img/iconResult.png'
+import './result.css'
 import moment from "moment";
+
 
 function ResultBooking() {
   const dispatch = useDispatch();
@@ -16,30 +20,31 @@ function ResultBooking() {
   const renderTicketItem = () => {
     return infoUser.thongTinDatVe?.map((item, index) => {
       return (
-        <div key={index} className="flex shadow-md pl-3 py-3">
-          <img
-            width={60}
-            className="object-scale-down h-30 m-2"
-            src={item.hinhAnh}
-            alt="ticket"
-          />
-          <div>
-            <h3 className="text-xs font-bold uppercase text-teal-700 mt-1 mb-2">
-              {item.tenPhim}
+        <div key={index} className="cardResult">
+          <div className="card-headerResult">
+            <img src={item.hinhAnh} alt={item.hinhAnh} />
+          </div>
+          <div className="card-bodyResult">
+            <span className="tag tag-teal">{item.tenPhim} - {item.thoiLuongPhim}' </span>
+            <h3 className="text-xs font-bold my-2">
+              {item.danhSachGhe[0].tenHeThongRap} - <Tag className="rounded-xl" color="#fb4226" style={{fontSize: '12px'}}>
+                {item.danhSachGhe[0].tenRap}
+              </Tag>
             </h3>
-            <h3 className="text-xl font-bold mb-2">
-              {item.danhSachGhe[0].tenHeThongRap}
-            </h3>
-            <h3 className="truncate">
-              Ngày chiếu : {moment(item.ngayDat).format("DD/MM/YYYY")} - Giờ
-              chiếu {moment(item.ngayDat).format("hh:mm A")}
-            </h3>
-            <h3>
-              Tên rạp : {item.danhSachGhe[0].tenRap} - Ghế : 
-              {item.danhSachGhe.map((ghe, index) => {
-                return <span className='text-green-600' key={index}> {ghe.tenGhe} </span>;
-              })}
-            </h3>
+              <h5>
+                 Ghế : {item.danhSachGhe.map((ghe, index) => {
+                  return <span className='text-green-600' key={index}> {ghe.tenGhe} </span>;
+                })}
+              </h5>
+            <div className="user">
+              {/* <TagsOutlined /> */}
+              <img src={iconResult} alt='iconTicket'/>
+              <div className="user-info">
+                <h5>Ngày chiếu : {moment(item.ngayDat).format("DD/MM/YYYY")}</h5>
+                <small>Giờ chiếu: {moment(item.ngayDat).format("hh:mm A")}</small><br/>
+                <small>Gía Vé: {item.giaVe.toLocaleString()}$</small>
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -54,12 +59,14 @@ function ResultBooking() {
             <h3 className="text-xl font-medium text-black text-center">
               Lịch sử đặt vé khách hàng
             </h3>
-            <p class="text-gray-500">
+            <h3 className="text-gray-500">
               Bạn có thể kiểm tra thông tin dưới đây và xem phim vui vẻ!.
-            </p>
+            </h3>
           </div>
 
-          {renderTicketItem()}
+          <div className="containerResult">
+            {renderTicketItem()}
+          </div>
         </div>
       </div>
     </section>

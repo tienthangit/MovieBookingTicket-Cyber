@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { Input, Button, Typography } from "antd";
 import { useFormik } from "formik";
 import { UserOutlined, LockOutlined, CloseOutlined } from "@ant-design/icons";
-import logoSignIn from "../../assets/logoSignIn.png";
+import logoSignIn from "../../assets/img/logoSignIn.png";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FetchInfoUser, SignInAction } from "../../Store/actions/userActions";

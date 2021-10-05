@@ -3,11 +3,11 @@
   right: 0;
   box-shadow: 0 0 15px rgb(0 0 0 / 30%);
   width: 25%;
+  height: 100vh;
 }
 
 .divBtn {
   position: absolute;
-  top: translate -100%;
   bottom: 0;
   width: 100%;
 }

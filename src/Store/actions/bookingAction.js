@@ -31,7 +31,7 @@ export const bookingTicketAction = (thongTinDatVe) => {
             // vì bất đồng bộ nên xử lý bằng đợi load xog getDetailRoomTicketAction rồi dispatch tiếp
             await dispatch(getDetailRoomTicketAction(thongTinDatVe.maLichChieu))
             await dispatch(createActions(DAT_VE_HOAN_TAT))
-            openNotificationWithIcon(`success`, result.data.message)
+            openNotificationWithIcon(`success`, 'Đặt vé thành công ^^!!.')
             await dispatch(createActions(CHUYEN_TAB))
 
             // let taiKhoan = await getState().userReducer.userLogin.taiKhoan
@@ -54,12 +54,15 @@ export const getInfoBookingAction = () => {
     return async (dispatch) => {
         try
         {
+            dispatch(createActions(ON_LOADING))
             const result = await bookingServices.getInfoBooking()
             dispatch(createActions(GET_INFO_BOOKING, result.data.content))
+            dispatch(createActions(HIDE_LOADING))
             // console.log(result.data);
         } catch (err)
         {
-            console.log(err);
+            dispatch(createActions(HIDE_LOADING))
+            console.log(err.response);
         }
     }
 }

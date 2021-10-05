@@ -45,7 +45,7 @@ function TicketBooking(props) {
 
   return (
     <div style={{ position: "relative" }}>
-      <div className="h-screen ticketBooking">
+      <div className="ticketBooking">
         <div className="p-4">
           <div className="flex justify-center items-center py-4">
             <span className="text-green-600 text-3xl">
@@ -54,7 +54,7 @@ function TicketBooking(props) {
             </span>
           </div>
           <hr />
-          <div className="flex items-left flex-col my-5">
+          <div className="flex items-left flex-col my-3">
             <p className="text-black font-bold text-xl">
               {" "}
               {thongTinPhim?.tenPhim}{" "}
@@ -68,7 +68,7 @@ function TicketBooking(props) {
             </h4>
           </div>
           <hr />
-          <div className="flex justify-between items-center my-5">
+          <div className="flex justify-between items-center my-3">
             <span className="text-red-600">
               {" "}
               Ghế : {renderSeatsSelected()}{" "}
@@ -76,12 +76,12 @@ function TicketBooking(props) {
             <span className="text-green-600"> {renderPrice()} đ.</span>
           </div>
           <hr />
-          <div className="my-5">
+          <div className="my-3">
             <p className="text-gray-600"> Email: </p>
             <h3> {user?.email} </h3>
           </div>
           <hr />
-          <div className="my-5">
+          <div className="my-3">
             <p className="text-gray-600"> Phone: </p>
             <h3> {user?.soDT} </h3>
           </div>
