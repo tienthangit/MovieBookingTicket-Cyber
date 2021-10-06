@@ -11,7 +11,6 @@ import Profile from "./Pages/Profile";
 import News from "./Pages/News";
 
 
-
 function App() {
   return (
     <BrowserRouter>

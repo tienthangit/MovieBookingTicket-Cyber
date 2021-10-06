@@ -52,24 +52,20 @@ function ResultBooking() {
   };
 
   return (
-    <section className="mx-auto max-w-6xl py-12">
-      <div className="flex flex-col md:flex-row justify-center items-center flex-wrap">
-        <div className="transition-all ease-in-out duration-1000 flex flex-col justify-center mr-0 md:mr-2">
-          <div className="mb-4 text-center">
-            <h3 className="text-xl font-medium text-black text-center">
-              Lịch sử đặt vé khách hàng
-            </h3>
-            <h3 className="text-gray-500">
-              Bạn có thể kiểm tra thông tin dưới đây và xem phim vui vẻ!.
-            </h3>
-          </div>
-
-          <div className="containerResult">
-            {renderTicketItem()}
-          </div>
-        </div>
+    <div className="divResult flex flex-col justify-center px-2">
+      <div className="mt-2 mb-4 text-center">
+        <h3 className="text-xl font-medium text-black text-center">
+          Lịch sử đặt vé khách hàng
+        </h3>
+        <h3 className="text-gray-500">
+          Bạn có thể kiểm tra thông tin dưới đây và xem phim vui vẻ!.
+        </h3>
       </div>
-    </section>
+
+      <div className="containerResult">
+        {renderTicketItem()}
+      </div>
+    </div>
   );
 }
 

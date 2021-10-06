@@ -23,3 +23,134 @@ code {
     monospace;
 }
 
+/*--------------------Responsive---------------------- */
+/* Mobile */
+.headerNav__bookingMobile {
+  display: none;
+}
+.navbar__Mobile {
+  display: none;
+}
+.ticket_bookingTL {
+  display: none;
+}
+
+/* Tablet PC */
+/* .header__bookingPC {
+  display: block;
+} */
+
+/*---------------- Màn hình Điện Thoại*/
+@media (max-width: 480px) {
+  /* Navbar Mobile */
+  .navbar__Mobile {
+    display: block;
+    width: 80%;
+  }
+  .ant-tabs > .ant-tabs-nav {
+    width: 240px;
+    max-width: 100%;
+  }
+
+  /* Header & Mobile */
+  .headerNav__bookingMobile {
+    display: block;
+  }
+  .header__bookingPC {
+    margin-top: 2.5rem;
+  }
+  .ant-tabs.ant-tabs-top .ant-tabs-nav {
+    display: none;
+  }
+
+  /* ticket */
+  .listNoteGhe {
+    flex-flow: column;
+    align-items: center;
+  }
+  .ticket_bookingTL {
+    display: block;
+  }
+  .ticket_Mobile {
+    width: 100%;
+  }
+  .divBtn-Mobile {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .ticket {
+    display: none;
+  }
+  .leftBg {
+    display: none;
+  }
+
+  /* Result Booking  */
+  .divResult {
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  /* Navbar Mobile */
+  .navbar__Mobile {
+    display: block;
+    width: 80%;
+  }
+  .ant-tabs > .ant-tabs-nav {
+    width: 240px;
+    max-width: 100%;
+  }
+
+  /* Header Mobile */
+  .headerNav__bookingMobile {
+    display: block;
+  }
+  .header__bookingPC {
+    margin-top: 2.5rem;
+  }
+  .ant-tabs.ant-tabs-top .ant-tabs-nav {
+    display: none;
+  }
+
+  /* ticket */
+  .ticket_bookingTL {
+    display: block;
+  }
+  .ticket_Mobile {
+    width: 100%;
+  }
+  .divBtn-Mobile {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .ticket {
+    display: none;
+  }
+  .leftBg {
+    display: none;
+  }
+
+  .listNoteGhe {
+    flex-flow: column;
+    align-items: center;
+  }
+
+  /* Result Booking  */
+  .divResult {
+    margin-top: 2rem;
+  }
+}
+
+/* Từ Tablet 768px ==> PC 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header__bookingPC {
+    width: 91%;
+  }
+
+  .ticket .ticket__Booking {
+    width: 31% !important;
+  }
+}

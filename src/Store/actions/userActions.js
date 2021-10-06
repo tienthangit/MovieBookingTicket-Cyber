@@ -45,11 +45,8 @@ export const SignUpAction = (userNew, callback) => {
 
       const result = await userServices.signUp(userNew)
       
-      localStorage.setItem(USER_LOGIN, JSON.stringify(result.data.content));
-      localStorage.setItem("toKen", result.data.content.accessToken);
-
-      openNotificationWithIcon(`success`, `Đăng ký thành công: Xin chào ${result.data.content.hoTen}!`)
-      dispatch(createActions(USER_SIGNIN, result.data.content));
+      openNotificationWithIcon(`success`, `Đăng ký thành công: Hãy đăng nhập!`)
+      // dispatch(createActions(USER_SIGNIN, result.data.content));
       // console.log(result);
       await dispatch(createActions(HIDE_LOADING))
       callback();

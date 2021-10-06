@@ -10,6 +10,8 @@ import ResultBooking from "../../Pages/ResultBooking";
 import { createActions } from "../../Store/constants/createAction";
 import { CHUYEN_TAB_ACTIVE } from "../../Store/constants/bookingConstant";
 import './booking.css'
+import TicketMobile from "../../Components/Responsive/Ticket";
+import HeaderMobile from "../../Components/Responsive/Header";
 const { TabPane } = Tabs;
 
 
@@ -69,8 +71,11 @@ function BookingTemplate(props) {
         render={(propsRoute) => {
           return (
             <Fragment>
-              <div className="grid grid-cols-4 h-full">
-                <div className="col-span-3">
+              <div className="grid md:grid-cols-4 h-full">
+                <div className="headerNav__bookingMobile">
+                  <HeaderMobile {...propsRoute}/>
+                </div>
+                <div className="header__bookingPC col-span-3">
                   <Tabs defaultActiveKey='1' activeKey={tabActive} onChange={onChangeTab} tabBarExtraContent={operations} >
                     <TabPane tab={<span> <DollarOutlined style={{ fontSize: 25, margin: '10px 10px 10px 0' }} /> CHỌN GHẾ & THANH TOÁN </span>} key="1">
                       <Component {...propsRoute} />
@@ -80,9 +85,12 @@ function BookingTemplate(props) {
                     </TabPane>
                     <TabPane
                       tab={
-                      <NavLink to='/'>  <HomeOutlined style={{ fontSize: 25, margin: '10px 10px 10px 0' }} />TRANG CHỦ </NavLink>} key="3">
+                        <NavLink to='/'>  <HomeOutlined style={{ fontSize: 25, margin: '10px 10px 10px 0' }} />TRANG CHỦ </NavLink>} key="3">
                     </TabPane>
                   </Tabs>
+                  <div className="ticket_bookingTL">
+                    <TicketMobile {...propsRoute}/>
+                  </div>
                 </div>
                 <TicketBooking {...propsRoute} />
               </div>

@@ -1,0 +1,34 @@
+.navbar__Mobile{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    background-color: white;
+}
+.navMobile{
+    position: fixed;
+    top: 8%;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all linear 0.2s;
+    /* display: flex;
+    flex-flow: column;
+    align-items: center;*/
+    background-color: #fff;
+    width: 240px;
+    max-width: 100%;
+}
+.div__overlay{
+    display: none;
+    background-color: #00000045;
+    position: fixed;
+    top: 8%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: all 0.2;
+}
+

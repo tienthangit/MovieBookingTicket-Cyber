@@ -48,7 +48,7 @@ function SignUp(props) {
     validateOnMount: true,
   });
   const goToHome = () => {
-    props.history.push("/");
+    props.history.push("/signin");
   };
 
   // set tất cả các input là touched khi submit

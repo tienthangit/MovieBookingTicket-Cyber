@@ -20,7 +20,7 @@ function BookingTicket(props) {
 
   const userLogin = useSelector(state => state.userReducer.userLogin);
 
-  const { detailRoomTicket,listSeatSelected } = useSelector(state => state.bookingTicketReducer);
+  const { detailRoomTicket, listSeatSelected } = useSelector(state => state.bookingTicketReducer);
   const { thongTinPhim, danhSachGhe } = detailRoomTicket;
 
   useEffect(() => {
@@ -101,18 +101,20 @@ function BookingTicket(props) {
       // }
 
       let classGheDaDuocMinhDat = "";
-      if (userLogin.taiKhoan === ghe.taiKhoanNguoiDat) {
+      if (userLogin.taiKhoan === ghe.taiKhoanNguoiDat)
+      {
         classGheDaDuocMinhDat = "gheDaDuocMinhDat";
       }
 
-      if (indexGheDangChon != -1) {
+      if (indexGheDangChon != -1)
+      {
         classGheDangChon = "gheDangChon";
       }
       return (
         <Fragment key={index}>
           <button
             onClick={handleSelected(ghe)}
-            disabled={ghe.daDat }
+            disabled={ghe.daDat}
             className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDangChon} ${classGheDaDuocMinhDat} `}
             key={index}>
             {ghe.daDat ? (
@@ -127,7 +129,7 @@ function BookingTicket(props) {
               // : classGheDangDat != "" ? (
               // <TeamOutlined style={{ fontSize: "20px" }} />
               // )
-                :ghe.stt
+              : ghe.stt
             }
           </button>
           {(index + 1) % 16 === 0 ? <br /> : ""}
@@ -137,11 +139,12 @@ function BookingTicket(props) {
   };
 
   return (
-    <div className="flex">
+    <div className=" flex">
       <div
         className="w-4/6 leftBg"
         style={{
-          background: `url(${thongTinPhim?.hinhAnh})`}}>
+          background: `url(${thongTinPhim?.hinhAnh})`
+        }}>
         <img
           className="opacity-0 w-full"
           src={thongTinPhim?.hinhAnh}
@@ -150,33 +153,33 @@ function BookingTicket(props) {
       </div>
       <div className="p-4">
         <div className="gird grid-cols-6">
-          <div className="flex">
+          <div className="flex items-center">
             <img
-              style={{ width: 50, height: 50 }}
+              style={{ width: 50 }}
               src={thongTinPhim?.hinhAnh}
               alt="..."
             />
             <div className="ml-2">
-              <h3>
-                <span className="text-green-600 font-semibold text-xl">
-                  {thongTinPhim?.tenCumRap}
-                </span>{" "}
-                - {thongTinPhim?.gioChieu} -{" "}
+              <span className="text-green-600 font-semibold text-base">
+                {thongTinPhim?.tenCumRap}
+              </span>{" "}
+              <h4>Địa điểm - {thongTinPhim?.diaChi}</h4>
+              <span>
+               Giờ chiếu: {thongTinPhim?.gioChieu} -{" "}
                 <Tag className="rounded-xl" color="#fb4226">
                   {thongTinPhim?.tenRap}
                 </Tag>
-              </h3>
-              <h4>Địa điểm - {thongTinPhim?.diaChi}</h4>
+              </span>
             </div>
           </div>
         </div>
         <div className="screen mt-3">
           <img className="w-full" src={srceen} alt="screen" />
         </div>
-        <div className="listGhe">{renderSeats()}</div>
+        <div className="listGhe justify-center">{renderSeats()}</div>
         <hr />
         <div className="noteGhe mt-5">
-          <ul className="flex flex-wrap justify-center">
+          <ul className="listNoteGhe flex flex-wrap justify-center">
             <li className="flex items-center">
               <button className="ghe"></button>
               <span className="font-bold">Ghế chưa đặt</span>

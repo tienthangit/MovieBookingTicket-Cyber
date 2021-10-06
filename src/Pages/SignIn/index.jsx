@@ -31,7 +31,7 @@ function SignIn(props) {
   });
 
   const goToHome = () => {
-    props.history.goBack();
+    props.history.push('/');
   };
 
   // set tất cả các input là touched khi submit

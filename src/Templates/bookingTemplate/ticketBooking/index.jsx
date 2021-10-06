@@ -44,11 +44,11 @@ function TicketBooking(props) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
-      <div className="ticketBooking">
-        <div className="p-4">
+    <div className="ticket" style={{ position: "relative" }}>
+      <div className="ticket__Booking">
+        <div className="lg:p-4 md:p-2">
           <div className="flex justify-center items-center py-4">
-            <span className="text-green-600 text-3xl">
+            <span className="text-green-600 text-3xl font-bold">
               {" "}
               {renderPrice()} đ.{" "}
             </span>
@@ -73,17 +73,22 @@ function TicketBooking(props) {
               {" "}
               Ghế : {renderSeatsSelected()}{" "}
             </span>
-            <span className="text-green-600"> {renderPrice()} đ.</span>
+            <span className="text-green-600 font-bold"> {renderPrice()} đ.</span>
           </div>
           <hr />
-          <div className="my-3">
-            <p className="text-gray-600"> Email: </p>
-            <h3> {user?.email} </h3>
+          <div className="flex items-center justify-between my-3">
+            <p className="text-gray-400"> Họ Tên:  </p>
+            <h3 className="text-black"> {user?.hoTen} </h3>
           </div>
           <hr />
-          <div className="my-3">
-            <p className="text-gray-600"> Phone: </p>
-            <h3> {user?.soDT} </h3>
+          <div className="flex items-center justify-between my-3">
+            <p className="text-gray-400"> Email: </p>
+            <h3 className="text-black"> {user?.email} </h3>
+          </div>
+          <hr />
+          <div className="flex items-center justify-between my-3">
+            <p className="text-gray-400"> Phone: </p>
+            <h3 className="text-black"> {user?.soDT} </h3>
           </div>
           <hr />
         </div>
