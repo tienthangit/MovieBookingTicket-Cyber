@@ -20,9 +20,9 @@ const Home = props => {
   //antd
   const { Title } = Typography;
   const settings = {
-    dots: false,
-    autoplay: true,
-    infinite: true,
+    dots: true,
+    autoplay: false,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,

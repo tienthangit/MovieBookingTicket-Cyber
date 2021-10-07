@@ -10,6 +10,8 @@ import "./MultipleRowSlick.module.css";
 import styleSlick from "./MultipleRowSlick.module.css";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import "./style.css";
+import arrowBack from '../../assets/img/back-session.png'
+import arrowNext from '../../assets/img/next-session.png'
 import { Modal } from 'antd';
 
 function SampleNextArrow(props) {
@@ -17,7 +19,7 @@ function SampleNextArrow(props) {
   return (
     <div
       className={`${className} ${styleSlick["slick-prev"]}`}
-      style={{ ...style, display: "block" }}
+      style={{ ...style, display: "block", right: "-50px",backgroundImage: `url(${arrowNext})` }}
       onClick={onClick}
     />
   );
@@ -28,7 +30,7 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={`${className} ${styleSlick["slick-prev"]}`}
-      style={{ ...style, display: "block", left: "-50px" }}
+      style={{ ...style, display: "block", left: "-50px", backgroundImage: `url(${arrowBack})`}}
       onClick={onClick}
     />
   );
