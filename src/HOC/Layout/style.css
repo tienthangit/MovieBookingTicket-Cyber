@@ -32,3 +32,8 @@ h4.ant-typography, .ant-typography h4 {
     margin-left: 10%;
     padding: 1rem 0;
 }
+.footer__title {
+    font-family: 'SF Text Regular';
+    color: white !important;
+    margin: 1rem 0;
+}

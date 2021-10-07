@@ -4,7 +4,6 @@ import { USER_LOGIN } from "../../Utils/systemSetting";
 import { createActions } from "../constants/createAction";
 import {
   USER_SIGNIN,
-  SET_THONG_TIN_NGUOI_DUNG,
   CAP_NHAT_THONG_TIN_NGUOI_DUNG,
 } from "../constants/userConstants";
 import { HIDE_LOADING, ON_LOADING } from "../constants/loadingConstanst";
@@ -59,44 +58,49 @@ export const SignUpAction = (userNew, callback) => {
   };
 };
 
-export const layThongTinNguoiDungAction = () => {
-  return async (dispatch) => {
-    try
-    {
-      const result = await userServices.layThongTinNguoiDung();
-      if (result.data.statusCode === 200)
-      {
-        dispatch(createActions(SET_THONG_TIN_NGUOI_DUNG, result.data.content)
-          //   {
-          //   type: SET_THONG_TIN_NGUOI_DUNG,
-          //   thongTinNguoiDung: result.data.content,
-          // }
-        );
-        // console.log("result", result);
-      }
-    } catch (err)
-    {
-      console.log(err);
-    }
-  };
-};
+// export const layThongTinNguoiDungAction = () => {
+//   return async (dispatch) => {
+//     try
+//     {
+//       const result = await userServices.layThongTinNguoiDung();
+//       if (result.data.statusCode === 200)
+//       {
+//         dispatch(createActions(SET_THONG_TIN_NGUOI_DUNG, result.data.content) );
+//           //   {
+//           //   type: SET_THONG_TIN_NGUOI_DUNG,
+//           //   thongTinNguoiDung: result.data.content,
+//           // }
+       
+//         // console.log("result", result);
+//       }
+//     } catch (err)
+//     {
+//       console.log(err);
+//     }
+//   };
+// };
 
-export const CapNhatThongTinNguoiDung = (user) => {
+export const CapNhatThongTinNguoiDung = (user, callback) => {
+  // console.log(user);
+
   return async (dispatch) => {
     try
     {
+      await dispatch(createActions(ON_LOADING))
+
+      
       const result = await userServices.CapNhatThongTinNguoiDung(user);
       console.log(result);
       if (result.data.statusCode === 200)
       {
-        dispatch({
-          type: CAP_NHAT_THONG_TIN_NGUOI_DUNG,
-          newUserInfo: result.data.content,
-        });
+        dispatch(createActions(CAP_NHAT_THONG_TIN_NGUOI_DUNG, result.data.content))
+        await dispatch(createActions(HIDE_LOADING))
+        callback();
       }
     } catch (err)
     {
-      console.log("err", err);
+      await dispatch(createActions(HIDE_LOADING))
+      console.log(err);
     }
   };
 };

@@ -16,7 +16,7 @@ function Layout(props) {
         <div className="containerLayout">
           <div className="row">
             <Col span={8}>
-              <Title level={4} style={{fontWeight: 300}}>Tix</Title>
+              <h3 className="footer__title" level={4} >Tix</h3>
               <div className="tix-col">
                 <Col span={12} style={{color: '#949494'}}>FAQ</Col>
                 <Col span={12} style={{color: '#949494'}}>Thỏa thuận sử dụng</Col>
@@ -27,7 +27,7 @@ function Layout(props) {
               </div>
             </Col>
             <Col span={8}>
-              <Title level={4} style={{fontWeight: 300}}>Đối tác</Title>
+              <h3 className="footer__title" level={4} >ĐỐI TÁC</h3>
               <div className="logo-col">
                 {cinema ? cinema?.map((item,index) => (
                   <img key={index} key={item.maHeThongRap} src={item.logo} alt={item.maHeThongRap} style={{ width: 30, marginRight: 20 }} />
@@ -52,7 +52,7 @@ function Layout(props) {
               </div>
             </Col>
             <Col span={4}>
-              <Title level={4} style={{fontWeight: 300}}>MOBILE APP</Title>
+              <h3 className="footer__title" level={4}>MOBILE APP</h3>
               <div className="mobile-col">
                 <img
                   src="https://tix.vn/app/assets/img/icons/apple-logo.png"
@@ -67,7 +67,7 @@ function Layout(props) {
               </div>
             </Col>
             <Col span={4}>
-              <Title level={4} style={{fontWeight: 300}}>SOCIAL</Title>
+              <h3 className="footer__title" level={4} >SOCIAL</h3>
               <div className="social-col">
                 <img
                   src="https://tix.vn/app/assets/img/icons/facebook-logo.png"

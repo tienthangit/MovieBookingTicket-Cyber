@@ -13,11 +13,8 @@ if (localStorage.getItem(USER_LOGIN)) {
 
 const initialState = {
   userLogin: user,
-  userLoginDefault: null,
   infoUser: {},
-
   thongTinNguoiDung: {},
-  newUserInfo: {},
 };
 
 export const userReducer = (state = initialState, { type, payload }) => {
@@ -35,19 +32,8 @@ export const userReducer = (state = initialState, { type, payload }) => {
       return { ...state };
 
     case CAP_NHAT_THONG_TIN_NGUOI_DUNG:
-      state.infoDetailUser = payload.newUserInfo;
-      const currentUser = {
-        email: state.newUserInfo.email,
-        hoTen: state.newUserInfo.hoTen,
-        maLoaiNguoiDung: state.newUserInfo.maLoaiNguoiDung,
-        matKhau: state.newUserInfo.matKhau,
-        maNhom: state.newUserInfo.maNhom,
-        soDT: state.newUserInfo.soDT,
-        taiKhoan: state.newUserInfo.taiKhoan,
-        accessToken: localStorage.getItem(TOKEN),
-      };
-      localStorage.setItem(USER_LOGIN, JSON.stringify(currentUser));
-      return { ...state };
+    state.infoUser = payload
+    return {...state}
 
     default:
       return state;

@@ -13,7 +13,6 @@ import {
 import MultipleRowSlick from "../../Components/RSlick/MultipleRowSlick";
 import Slider from "react-slick";
 import { getInfoBookingAction } from "../../Store/actions/bookingAction";
-import { layThongTinNguoiDungAction } from "../../Store/actions/userActions";
 
 const Home = props => {
   const dispatch = useDispatch();
@@ -35,7 +34,6 @@ const Home = props => {
     dispatch(FetchListBannerActions());
     dispatch(FetchListMovieAction());
     dispatch(getInfoBookingAction());
-    dispatch(layThongTinNguoiDungAction());
   }, [dispatch]);
 
   const bannerList = useSelector(state => state.movieReducers.bannerList);
@@ -52,7 +50,7 @@ const Home = props => {
                 className="bgBanner"
                 style={{ backgroundImage: `url(${item.hinhAnh})` }}>
                 <img
-                  className="opacity-0 w-full"
+                  className="maBanner opacity-0 w-full"
                   src={item.hinhAnh}
                   alt={item.maBanner}
                 />

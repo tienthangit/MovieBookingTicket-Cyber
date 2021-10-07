@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Tabs, Input, Button, Typography } from "antd";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  CapNhatThongTinNguoiDung,
-  layThongTinNguoiDungAction,
-} from "../../Store/actions/userActions";
-import moment from "moment";
+import React, { useCallback } from "react";
+import "./style.css";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { Input, Button, Typography } from "antd";
 import {
   UserOutlined,
   LockOutlined,
@@ -13,131 +10,170 @@ import {
   PhoneOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
 import logoSignIn from "../../assets/img/logoSignIn.png";
-import './style.css'
-
-const { TabPane } = Tabs;
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { CapNhatThongTinNguoiDung } from "../../Store/actions/userActions";
 const { Text } = Typography;
 
-export default function Profile(props) {
+const validationSchema = Yup.object().shape({
+  taiKhoan: Yup.string().required("Username is invalid!"),
+  matKhau: Yup.string()
+    .required("PassWord is invalid!")
+    .min(6, "PassWord must have min 6 characters")
+    .max(32, "PassWord have max 32 characters"),
+  email: Yup.string().required("Email is required!").email("Email is invalid!"),
+  soDt: Yup.string()
+    .required("Phone number is required")
+    .matches(
+      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+      "Invalid phone number"
+    )
+    .min(8, "Phone must have mon 8 number"),
+  hoTen: Yup.string().required("FullName is required!"),
+});
+function Profile(props) {
   const dispatch = useDispatch();
 
-  const { userLogin, thongTinNguoiDung, newUserInfo, infoUser } = useSelector(
-    (state) => state.userReducer
-  );
+  const infoUser = useSelector(state => state.userReducer.infoUser)
 
-  useEffect(() => {
-    dispatch(layThongTinNguoiDungAction());
-  }, []);
-
-  const [user, setUser] = useState({
-    taiKhoan: userLogin.taiKhoan,
-    email: newUserInfo.email ?? userLogin.email ?? thongTinNguoiDung.email,
-    soDt: newUserInfo.soDT ?? userLogin.soDT ?? thongTinNguoiDung.soDt,
-    maNhom: newUserInfo.maNhom ?? thongTinNguoiDung.maNhom,
-    matKhau:  thongTinNguoiDung.matKhau,
-    maLoaiNguoiDung: newUserInfo.maLoaiNguoiDung ?? userLogin.maLoaiNguoiDung ?? thongTinNguoiDung.maLoaiNguoiDung,
-    hoTen: newUserInfo.hoTen ?? userLogin.hoTen ?? thongTinNguoiDung.hoTen,
+  const formik = useFormik({
+    initialValues: {
+      taiKhoan: infoUser.taiKhoan,
+      matKhau: infoUser.matKhau,
+      email: infoUser.email,
+      soDt: infoUser.soDT,
+      hoTen: infoUser.hoTen,
+      maLoaiNguoiDung: infoUser.maLoaiNguoiDung,
+      maNhom: infoUser.maNhom,
+    },
+    validationSchema,
+    validateOnMount: true,
   });
+  const goToHome = () => {
+    props.history.push("/");
+  };
 
-  const renderInfoUser = () => {
-    return thongTinNguoiDung.thongTinDatVe?.map((info) => {
-      return (
-        <div key={info.maVe} className="max-w-sm w-full lg:max-w-full lg:flex mb-3">
-          <div
-            className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-            style={{ backgroundImage: `url(${info.hinhAnh})` }}
-            title="Woman holding a mug"
-          ></div>
-          <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-            <div className="mb-8">
-              <div className="text-gray-900 font-bold text-l mb-2">
-                {info.tenPhim}
-              </div>
-              <p className="text-gray-700 text-base">
-                <b className="mr-2">Ngày đặt:</b>
-                {moment(info.ngayDat).format("dd-mm-yyyy")}
-              </p>
-              <div className="text-sm">
-                <p className="text-gray-900 leading-none">
-                  <b className="mr-2">Giá vé:</b>
-                  {info.giaVe}
-                  <span className="ml-1">VNĐ</span>
-                </p>
-                <p className="text-gray-600">
-                  <b className="mr-2">Thời lượng phim:</b>
-                  {info.thoiLuongPhim}
-                  <span className="ml-1">phút</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+  // set tất cả các input là touched khi submit
+  // để khi người dùng chưa nhập gì mà submit
+  //sẽ thỏa điều kiện hiện error
+  const setAllTouched = useCallback(() => {
+    Object.keys(formik.values).forEach((key) => {
+      formik.setFieldTouched(key);
     });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser((user) => ({
-      ...user,
-      [name]: value,
-    }));
-  };
+  }, [formik]);
+  // console.log(formik);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({user});
-    dispatch(CapNhatThongTinNguoiDung(user));
+    setAllTouched();
+    if (!formik.isValid) return;
+    dispatch(CapNhatThongTinNguoiDung(formik.values, goToHome));
   };
 
   return (
-    <Tabs defaultActiveKey="1" className="profileTabs">
-      <TabPane tab="Thông tin cá nhân" key="1">
-        <form onSubmit={handleSubmit} className="signIn-form sm:container rounded-lg" >
-          <NavLink to="/"><img className="logoLogin" src={logoSignIn} alt="logo" /></NavLink>
-          <NavLink to="/" exact className="btnClose text-center"><CloseOutlined /></NavLink>
-          <div className="mb-2">
-            <Text className="text-gray-500" strong> Username: </Text>
-            <Input name="taiKhoan" size="large" prefix={<UserOutlined />} onChange={handleChange} value={userLogin.taiKhoan} />
-          </div>
-          <div className="mb-2">
-            <Text className="text-gray-500" strong>
-              {" "}
-              FullName:
-            </Text>
-            <Input name="hoTen" size="large" prefix={<UserOutlined />} onChange={handleChange} value={user.hoTen} />
-          </div>
-          <div className="mb-2">
-            <Text className="text-gray-500" strong> Password: </Text>
-            <Input.Password name="matKhau" size="large" prefix={<LockOutlined />} onChange={handleChange} value={user.matKhau} />
-          </div>
-          <div className="mb-2">
-            <Text className="text-gray-500" strong>
-              Email:
-            </Text>
-            <Input name="email" size="large" prefix={<MailOutlined />} onChange={handleChange} value={user.email} />
-          </div>
-          <div className="mb-2">
-            <Text className="text-gray-500" strong> Phone: </Text>
-            <Input name="soDt" size="large" prefix={<PhoneOutlined />} onChange={handleChange} value={user.soDt} />
-          </div>
-          <div className="mb-2">
-            <Text className="text-gray-500" strong> GroupID: </Text>
-            <Input name="maNhom" size="large" prefix={<UserOutlined />} onChange={handleChange} value={user.maNhom} />
-          </div>
-
-          <Button className="btnLogin my-3" htmlType="submit" type="primary" block >
-            Lưu thay đổi
-          </Button>
-        </form>
-      </TabPane>
-      <TabPane tab="Lịch sử đặt vé " key="2">
-        <div className="grid grid-rows-3 grid-flow-col gap-4" style={{marginBottom:10}}>
-          <div>{renderInfoUser()}</div>
+    <>
+      <form
+        className="signIn-form sm:container rounded-lg"
+        onSubmit={handleSubmit}>
+        <NavLink to="/">
+          <img className="logoLogin" src={logoSignIn} alt="logo" />
+        </NavLink>
+        <NavLink to="/" exact className="btnClose text-center text-white">
+          <CloseOutlined />
+        </NavLink>
+        <div className="mb-2">
+          <Text className="text-gray-500" strong>
+            FullName:
+          </Text>
+          <Input
+            name="hoTen"
+            size="large"
+            prefix={<UserOutlined />}
+            value={formik.values.hoTen}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.hoTen && (
+            <span className="text-red-500">{formik.errors.hoTen}</span>
+          )}
         </div>
-      </TabPane>
-    </Tabs>
+        <div className="mb-2">
+          <Text className="text-gray-500" strong>
+            Username:
+          </Text>
+          <Input
+            name="taiKhoan"
+            size="large"
+            disabled
+            prefix={<UserOutlined />}
+            value={formik.values.taiKhoan}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.taiKhoan && (
+            <span className="text-red-500">{formik.errors.taiKhoan}</span>
+          )}
+        </div>
+        <div className="mb-2">
+          <Text className="text-gray-500" strong>
+            Password:
+          </Text>
+          <Input.Password
+            name="matKhau"
+            size="large"
+            prefix={<LockOutlined />}
+            value={formik.values.matKhau}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.matKhau && (
+            <span className="text-red-500">{formik.errors.matKhau}</span>
+          )}
+        </div>
+        <div className="mb-2">
+          <Text className="text-gray-500" strong>
+            Email:
+          </Text>
+          <Input
+            name="email"
+            size="large"
+            prefix={<MailOutlined />}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.email && (
+            <span className="text-red-500">{formik.errors.email}</span>
+          )}
+        </div>
+        <div className="mb-2">
+          <Text className="text-gray-500" strong>
+            Phone:
+          </Text>
+          <Input
+            name="soDt"
+            size="large"
+            prefix={<PhoneOutlined />}
+            value={formik.values.soDt}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.soDt && (
+            <span className="text-red-500">{formik.errors.soDt}</span>
+          )}
+        </div>
+
+        <Button
+          className="btnLogin my-3"
+          htmlType="submit"
+          type="primary"
+          block>
+         Update
+        </Button>
+      </form>
+    </>
   );
 }
+
+export default Profile;
