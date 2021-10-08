@@ -125,7 +125,7 @@ export default function MultipleRowSlick(props) {
               </div>
               <div style={{ position: "relative" }}>
                 <NavLink className="movie_detail" to={`/detail/${phim.maPhim}`}>
-                  <b>Detail</b>
+                  <button className="btnDatVe">ĐẶT VÉ</button>
                 </NavLink>
               </div>
               {phim.hot ? <button className="btn_hot">HOT</button> : <></>}

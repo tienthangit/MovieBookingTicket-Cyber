@@ -43,7 +43,7 @@ export const SignUpAction = (userNew, callback) => {
       await dispatch(createActions(ON_LOADING))
 
       const result = await userServices.signUp(userNew)
-      
+
       openNotificationWithIcon(`success`, `Đăng ký thành công: Hãy đăng nhập!`)
       // dispatch(createActions(USER_SIGNIN, result.data.content));
       // console.log(result);
@@ -70,7 +70,7 @@ export const SignUpAction = (userNew, callback) => {
 //           //   type: SET_THONG_TIN_NGUOI_DUNG,
 //           //   thongTinNguoiDung: result.data.content,
 //           // }
-       
+
 //         // console.log("result", result);
 //       }
 //     } catch (err)
@@ -88,18 +88,20 @@ export const CapNhatThongTinNguoiDung = (user, callback) => {
     {
       await dispatch(createActions(ON_LOADING))
 
-      
+
       const result = await userServices.CapNhatThongTinNguoiDung(user);
       console.log(result);
       if (result.data.statusCode === 200)
       {
         dispatch(createActions(CAP_NHAT_THONG_TIN_NGUOI_DUNG, result.data.content))
+        openNotificationWithIcon(`success`, `Cập nhật thành công!`)
         await dispatch(createActions(HIDE_LOADING))
         callback();
       }
     } catch (err)
     {
       await dispatch(createActions(HIDE_LOADING))
+      openNotificationWithIcon(`error`, err.response.data?.content)
       console.log(err);
     }
   };
